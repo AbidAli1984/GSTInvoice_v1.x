@@ -1,0 +1,110 @@
+﻿@model GSTInvoiceData.Models.UserLogin
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html>
+<!-- Mirrored from radixtouch.in/hospital/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Sep 2017 11:11:08 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta name="description" content="Responsive Admin Template" />
+    <meta name="author" content="RedstarHospital" />
+    <title>Redstar Hospital | Bootstrap Responsive Hospital Admin Template</title>
+    <!-- google font -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css" />
+
+    <!-- icons -->
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- bootstrap -->
+    <link href="~/js/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- style -->
+    <link rel="stylesheet" href="~/css/login.css">
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="~/img/favicon.ico" />
+</head>
+<body>
+    <div class="form-title">
+        <h1>Login Form</h1>
+    </div>
+    <!-- Login Form-->
+    <div class="login-form text-center">
+        <div class="toggle">
+            <i class="fa fa-user-plus"></i>
+        </div>
+        <div class="form formLogin">
+            <h2>Login to your account</h2>
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <h style="color:red">@ViewBag.TokenError</h>
+                <div>
+                    @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "errorMessage" })
+                    @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { placeholder = "Email / Mobile No." } })
+
+                </div>
+                <div>
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "errorMessage" })
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { placeholder = "Password" } })
+                </div>
+                <h style="color:red">@ViewBag.Message</h>
+                <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+                <script src="~/Scripts/jquery.validate.min.js"></script>
+                <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+                <div class="remember text-left">
+                    <div class="checkbox checkbox-primary">
+                        <input id="checkbox2" type="checkbox" checked>
+                        <label for="checkbox2">
+                            Remember me
+                        </label>
+                    </div>
+                </div>
+                <button type="submit">Login</button>
+                <div class="forgetPassword">
+                    <a href="javascript:void(0)">Forgot your password?</a>
+                </div>
+            }
+        </div>
+
+        @{
+            Html.RenderPartial("Register");
+        }
+
+        <div class="form formReset">
+            <h2>Reset your password?</h2>
+            @using (Html.BeginForm("ForgetPassword", "Home", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true)
+                <div>
+                    @Html.LabelFor(model => model.EmailId)
+                </div>
+                <div>
+                    @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "errorMessage" })
+                    @Html.EditorFor(model => model.EmailId)
+                </div>
+                <button type="submit">Send Verification Email</button>
+            }
+        </div>
+    </div>
+    <!-- start js include path -->
+    <script src="~/js/jquery.min.js" type="text/javascript"></script>
+    <script src="~/js/login.js"></script>
+    <script src="~/js/pages.js" type="text/javascript"></script>
+    <!-- end js include path -->
+</body>
+<!-- Mirrored from radixtouch.in/hospital/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Sep 2017 11:11:08 GMT -->
+</html>
+
+
+
+
+
+
+

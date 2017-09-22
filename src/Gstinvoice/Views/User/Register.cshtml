@@ -1,0 +1,30 @@
+﻿@model GSTInvoiceData.Models.UserInfo
+
+<div class="form formRegister">
+    <h2>Create an account</h2>
+    @using (Html.BeginForm("Register", "User", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true)
+        <div>
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "errorMessage" })
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { placeholder = "First Name*" } })
+        </div>
+        <div>
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "errorMessage" })
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { placeholder = "Last Name*" } })
+        </div>
+        <div>
+            @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "errorMessage" })
+            @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { placeholder = "Email*" } })
+            <span id="lblEmailExist"></span>
+        </div>
+        <div>
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "errorMessage" })
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { placeholder = "Password*" } })
+        </div>
+        <button type="submit">Register</button>
+    }
+</div>
+
+
+
