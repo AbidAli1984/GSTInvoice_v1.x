@@ -40,6 +40,7 @@ namespace GSTInvoiceData.Repository
         {
             return dbContext.userInfo
                     .FirstOrDefault(User => User.EmailId.Equals(login.EmailId));
+           
         }
 
         public static UserInfo GetUserByEmailOrMobile(UserLogin login)

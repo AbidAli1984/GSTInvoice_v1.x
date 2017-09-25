@@ -31,7 +31,7 @@
     <link rel="shortcut icon" href="~/img/favicon.ico" />
 </head>
 <body>
-    <div class="form-title">
+       <div class="form-title">
         <h1>Login Form</h1>
     </div>
     <!-- Login Form-->
@@ -44,8 +44,7 @@
             @using (Html.BeginForm())
             {
                 @Html.ValidationSummary(true)
-                <h style="color:red">@ViewBag.TokenError</h>
-                <div>
+                  <div>
                     @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "errorMessage" })
                     @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { placeholder = "Email / Mobile No." } })
 
@@ -79,7 +78,7 @@
 
         <div class="form formReset">
             <h2>Reset your password?</h2>
-            @using (Html.BeginForm("ForgetPassword", "Home", FormMethod.Post))
+            @using (Html.BeginForm("ForgetPassword", "User", FormMethod.Post))
             {
                 @Html.ValidationSummary(true)
                 <div>

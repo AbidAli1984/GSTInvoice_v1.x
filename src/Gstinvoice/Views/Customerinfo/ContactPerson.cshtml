@@ -1,0 +1,35 @@
+﻿@model GSTInvoiceData.Models.ContactPerson
+@{
+    ViewBag.Title = "ContactPerson";
+}
+
+<h2>ContactPerson</h2>
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(model=>model.Salutation)
+@Html.DropDownListFor(model => model.Salutation, new SelectList(new[] { "Dear Mr.", "Dear Mrs.", "Dear Ms." }), "Salutation")
+
+    </div>
+    <div>
+        @Html.LabelFor(model=>model.FirstName)
+        @Html.EditorFor(model=>model.FirstName)
+    </div>
+    <div>
+        @Html.LabelFor(model => model.LastName)
+        @Html.EditorFor(model => model.LastName)
+    </div>
+    <div>
+        @Html.LabelFor(model=>model.EmailAddress)
+        @Html.EditorFor(model=>model.EmailAddress)
+    </div>
+    <div>
+        @Html.LabelFor(model=>model.WorkPhoneNumber)
+        @Html.EditorFor(model=>model.WorkPhoneNumber)
+    </div>
+    <div>
+        @Html.LabelFor(model=>model.MobileNumber)
+        @Html.EditorFor(model=>model.MobileNumber)
+    </div>
+}
+

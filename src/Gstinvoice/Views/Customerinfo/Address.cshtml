@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "Address";
+}
+
+<html>
+<head>
+    <script type="text/javascript">
+        function Copy() {
+            var billingBuilding = document.getElementById("BillingBuilding").value;
+            document.getElementById("ShippingBuilding").value = billingBuilding;
+
+            var billingAddress = document.getElementById("BillingAddress").value;
+            document.getElementById("ShippingAddress").value = billingAddress;
+
+            var billingCity = document.getElementById("BillingCity").value;
+            document.getElementById("ShippingCity").value = billingCity;
+
+            var billingState = document.getElementById("BillingState").value;
+            document.getElementById("ShippingState").value = billingState;
+
+            var billingPinCode = document.getElementById("BillingPinCode").value;
+            document.getElementById("ShippingPinCode").value = billingPinCode;
+
+            var billingCountry = document.getElementById("BillingCountry").value;
+            document.getElementById("ShippingCountry").value =billingCountry;
+
+            var billingFax = document.getElementById("BillingFax").value;
+            document.getElementById("ShippingFax").value = billingFax;
+        }
+
+    </script>
+</head>
+<body>
+
+
+    <h2>Address</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()
+        <div>
+            @Html.LabelFor(model => model.BillingBuilding)
+            @Html.EditorFor(model => model.BillingBuilding)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.BillingAddress)
+            @Html.TextAreaFor(model => model.BillingAddress)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.BillingCity)
+            @Html.EditorFor(model => model.BillingCity)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.BillingState)
+            @Html.EditorFor(model => model.BillingState)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.BillingPinCode)
+            @Html.EditorFor(model => model.BillingPinCode)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.BillingCountry)
+            @Html.DropDownListFor(model => model.BillingCountry, new SelectList(new[] { "Bangladesh", "Australia", "Canada" }), "India")
+        </div>
+        <div>
+            @Html.LabelFor(model => model.BillingFax)
+            @Html.EditorFor(model => model.BillingFax)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.ShippingBuilding)
+            @Html.EditorFor(model => model.ShippingBuilding)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.ShippingAddress)
+            @Html.TextAreaFor(model => model.ShippingAddress)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.ShippingCity)
+            @Html.EditorFor(model => model.ShippingCity)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.ShippingState)
+            @Html.EditorFor(model => model.ShippingState)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.ShippingPinCode)
+            @Html.EditorFor(model => model.ShippingPinCode)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.ShippingCountry)
+            @Html.DropDownListFor(model => model.ShippingCountry, new SelectList(new[] { "Bangladesh", "Australia", "Canada" }), "India")
+        </div>
+        <div>
+            @Html.LabelFor(model => model.ShippingFax)
+            @Html.EditorFor(model => model.ShippingFax)
+        </div>
+        <p>
+            <button type="submit">Save</button>
+            <button onclick="Copy()" id="copyButton" type="button">Copy Billing Address</button>
+        </p>
+
+    }
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>
+
+

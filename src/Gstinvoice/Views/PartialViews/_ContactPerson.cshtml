@@ -1,0 +1,56 @@
+﻿@model Gstinvoice.Models.ContactPerson
+@{
+    ViewBag.Title = "_ContactPerson";
+}
+<html>
+<head>
+</head>
+<body>
+    <div class="col-md-12">
+        <div class="card card-topline-green">
+            <div class="card-head">
+                <header>Contact Persons</header>
+                <div class="tools">
+                    <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
+                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
+                    <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
+                </div>
+            </div>
+
+            <div class="card-body ">
+                <div class="table-scrollable">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Salutation</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email Address</th>
+                                <th>Work Phone</th>
+                                <th>Mobile</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    @Html.DropDownListFor(model => model.Salutation, new SelectList(new[] { "Dear Mr.", "Dear Mrs.", "Dear Ms." }), "Salutation", new { @class = "form-control" })
+                                </td>
+                                <td>@Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } }) </td>
+                                <td>@Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                <td>@Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                <td>@Html.EditorFor(model => model.WorkPhoneNumber, new { htmlAttributes = new { @class = "form-control" } })</td>
+                                <td>@Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control" } })</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <h4 style="text-transform:lowercase!important; margin-left:25px;"><a>Add Contact Person</a></h4>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>
+

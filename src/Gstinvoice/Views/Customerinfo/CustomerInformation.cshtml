@@ -1,0 +1,126 @@
+﻿@model GSTInvoiceData.Models.CustomerInformation
+
+@{
+    ViewBag.Title = "CustomerInformation";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+<html>
+<head>
+
+    <script type="text/javascript">
+
+        function myfun() {
+
+            $('#ContactDisplayName').append($("<option>" + $('#salutaion').val() + " " + $('#FirstName').val() + " " + $('#LastName').val() + "</option>"));
+
+
+        }
+
+
+    </script>
+</head>
+<body>
+    <style type="text/css">
+        .field-validation-error {
+            color: red;
+        }
+    </style>
+    <div class="page-bar">
+        <div class="page-title-breadcrumb">
+            <div class=" pull-left">
+                <div class="page-title">New Contact</div>
+            </div>
+            <ol class="breadcrumb page-breadcrumb pull-right">
+                <li>
+                    <i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                    <a class="parent-item" href="#">Contact</a>&nbsp;<i class="fa fa-angle-right">    </i>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="card card-topline-yellow">
+                <div class="card-head">
+                    <header>Add Contact Information</header>
+                </div>
+                <div class="card-body" id="bar-parent1">
+
+                    @{
+                        Html.RenderPartial("~/Views/PartialViews/_CustomerInformation.cshtml", Model);
+                    }
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-md-2" onclick="myFunction()">
+                                    <div class="panel">
+                                        <div class="panel-body"><a>Other Details</a></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2" onclick="myFunction_form()">
+                                    <div class="panel">
+                                        <div class="panel-body"><a>Address</a></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2" onclick="myFunction_contact()">
+                                    <div class="panel">
+                                        <div class="panel-body"><a>Contact Persons</a></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2" onclick="myFunction_remarks()">
+                                    <div class="panel">
+                                        <div class="panel-body"><a>Remarks</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="display:block" id="otherdetails">
+
+                        @{
+                            Html.RenderPartial("~/Views/PartialViews/_CustomerOtherDetails.cshtml", Model.customerOtherDetails);
+                        }
+                    </div>
+                    <div class="row" style="display:none" id="addressform">
+                        @{
+                            Html.RenderPartial("~/Views/PartialViews/_Address.cshtml", Model.address);
+                        }
+                    </div>
+
+                    <div class="row" style="display:none" id="contactpersons">
+                        @{
+                            Html.RenderPartial("~/Views/PartialViews/_ContactPerson.cshtml", Model.contactPerson);
+                        }
+                    </div>
+                    <div class="row" style="display:none" id="remarks">
+                        @{
+                            Html.RenderPartial("~/Views/PartialViews/_Remarks.cshtml", Model);
+                        }
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn btn-primary">
+                                    <a style="color:white;" href="contacts_content.html
+                                                ">Save</a>
+                                </button>
+                                <button type="button" class="btn btn-default">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>
+
+
+
+

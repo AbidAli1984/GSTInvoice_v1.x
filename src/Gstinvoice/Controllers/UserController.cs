@@ -52,7 +52,7 @@ namespace Gstinvoice.Controllers
                 GSTInvoiceData.Repository.UserRepository.VerifyEmail(currentUser);
                 ViewBag.TokenError = "Your Email Verified Successfully";
             }
-            return RedirectToAction("Login", "User");
+            return RedirectToAction("RegisterConfirmation", "User");
         }
 
         #region Forgot Password
@@ -94,7 +94,7 @@ namespace Gstinvoice.Controllers
                 if (currentUser != null)
                 {
                     Session["LoggedUserId"] = currentUser.UserId.ToString();
-                    return RedirectToAction("AfterLogin", "Home");
+                    return RedirectToAction("AfterLogin", "User");
                 }
                 else
                 {
@@ -148,6 +148,22 @@ namespace Gstinvoice.Controllers
                         return View(userInfo);
                     }
                 }
+            }
+            return View();
+        }
+
+        public ActionResult RegisterConfirmation()
+        {
+            GSTInvoiceDBContext db = new GSTInvoiceDBContext();
+            bool emailVarifybit = db.userInfo.Select(user => user.IsEmailVerified).FirstOrDefault() ;
+            int bit = emailVarifybit ? 1 : 0;
+            if(bit==1)
+            {
+                ViewBag.Success = "Thank you for your submission";
+            }
+            else
+            {
+                ViewBag.Error= "Invalid Request to Confirm Email";
             }
             return View();
         }

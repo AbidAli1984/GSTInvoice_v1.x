@@ -1,0 +1,45 @@
+﻿@model GSTInvoiceData.Models.CustomerOthetDetails
+
+@{
+    ViewBag.Title = "CustomerOtherDetails";
+}
+
+<h2>CustomerOtherDetails</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <div>
+        @Html.LabelFor(model => model.Currency)
+        @Html.DropDownListFor(model => model.Currency, new SelectList(new[] { "AUD-Australian Dollar", "CAD-Canadian Dollar", "INR-Indian Ruppe" }), "USD-US DOLLAR")
+        @Html.ValidationMessageFor(model => model.Currency)
+    </div>
+    <div>
+        @Html.LabelFor(model => model.PaymentTerms)
+        @Html.DropDownListFor(model => model.PaymentTerms, new SelectList(new[] { "Net 15", "Net 30", "Net 45", "Net 60", "Due end of the month", "Due end of next month" }), "Due Or Receipt")
+        @Html.ValidationMessageFor(model => model.PaymentTerms)
+    </div>
+    <div>
+        @Html.LabelFor(model => model.IsEnablePortal)
+        @Html.CheckBoxFor(model => model.IsEnablePortal)
+        @Html.Label("Allow portal access for this contact ")
+    </div>
+    <div>
+        @Html.LabelFor(model => model.PortalLanguage)
+        @Html.DropDownListFor(model => model.PortalLanguage, new SelectList(new[] { "" }), "English")
+    </div>
+    <div>
+        @Html.LabelFor(model => model.Facebook)
+        @Html.EditorFor(model => model.Facebook)
+    </div>
+    <div>
+        @Html.LabelFor(model => model.tweeter)
+        @Html.EditorFor(model => model.tweeter)
+    </div>
+    <p>
+        <button type="submit">Save</button>
+    </p>
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+

@@ -1,0 +1,13 @@
+﻿@model GSTInvoiceData.Models.CustomerInformation
+
+@{
+    ViewBag.Title = "Remarks";
+}
+
+<h2>Remarks</h2>
+<div>
+    @Html.LabelFor(model => model.Remarks)
+    @Html.EditorFor(model=>model.Remarks)
+</div>
+
+
