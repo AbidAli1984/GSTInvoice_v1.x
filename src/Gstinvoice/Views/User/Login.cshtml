@@ -5,6 +5,7 @@
     Layout = "";
 }
 
+
 <!DOCTYPE html>
 <html>
 <!-- Mirrored from radixtouch.in/hospital/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Sep 2017 11:11:08 GMT -->
@@ -31,8 +32,8 @@
     <link rel="shortcut icon" href="~/img/favicon.ico" />
 </head>
 <body>
-       <div class="form-title">
-        <h1>Login Form</h1>
+           <div class="form-title">
+            <h1>Login Form</h1>
     </div>
     <!-- Login Form-->
     <div class="login-form text-center">
@@ -45,13 +46,15 @@
             {
                 @Html.ValidationSummary(true)
                   <div>
+                      <span class="errorMessage">@ViewBag.error</span>
+                     <span class="successmsg">@TempData["success"]</span>
                     @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "errorMessage" })
-                    @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { placeholder = "Email / Mobile No." } })
+                    @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { placeholder = "Email / Mobile No.*" } })
 
                 </div>
                 <div>
                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "errorMessage" })
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { placeholder = "Password" } })
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { placeholder = "Password*" } })
                 </div>
                 <h style="color:red">@ViewBag.Message</h>
                 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
@@ -73,7 +76,7 @@
         </div>
 
         @{
-            Html.RenderPartial("Register");
+            Html.RenderPartial("PartialViews/_Register");
         }
 
         <div class="form formReset">
@@ -81,12 +84,9 @@
             @using (Html.BeginForm("ForgetPassword", "User", FormMethod.Post))
             {
                 @Html.ValidationSummary(true)
-                <div>
-                    @Html.LabelFor(model => model.EmailId)
-                </div>
-                <div>
+            <div>
                     @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "errorMessage" })
-                    @Html.EditorFor(model => model.EmailId)
+                    @Html.EditorFor(model => model.EmailId,new { htmlAttributes = new { placeholder = "Email / Mobile No.*" } })
                 </div>
                 <button type="submit">Send Verification Email</button>
             }

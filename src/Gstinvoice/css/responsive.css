@@ -1188,3 +1188,65 @@
         margin: 0 !important
     }
 }
+@media (min-width:320px) and (max-width:760px) {
+    .new_btn{
+    margin-left:100px;
+}
+}
+
+@media (min-width:320px) and (max-width:760px) {
+   #modal{
+    height:1000px;
+}
+}
+
+@media (min-width:320px) and (max-width:760px) {
+  #btn_success{
+    margin-right:8px; 
+      margin-top:63px;
+}
+
+#btn_default{
+    margin-bottom:12px;
+    margin-right:60px;
+     margin-top:65px;
+}
+}
+
+@media (min-width:320px) and (max-width:760px) {
+ .btn_style_grp_1{
+    margin-left:50px;
+}
+}
+
+@media (min-width:320px) and (max-width:760px) {
+ .column_select{
+    margin-left:-10px;
+}
+}
+
+
+@media (min-width:320px) and (max-width:760px) {
+ .col-lg-2 {
+    width: 55.666667%!important;
+     margin-left: 90px;
+}
+}
+
+@media (min-width:320px) and (max-width:760px) {
+ .card_size{
+     margin-left:10px;
+    margin-top:0px; 
+    width:400px;
+}
+}
+
+@media (min-width:320px) and (max-width:760px) {
+#img_size_1{
+margin-left:120px;
+}
+#para_size_1{
+     margin-left:120px;
+    font-size:20px;
+}
+}

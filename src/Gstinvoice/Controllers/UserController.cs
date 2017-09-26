@@ -13,25 +13,28 @@ namespace Gstinvoice.Controllers
     {
         // GET: User
         public ActionResult Index()
-        {
+        {    
             return View();
         }
 
         #region Register
-        [HttpGet]
-        public ActionResult Register()
-        {
-            return View();
-        }
+
         [HttpPost]
         public ActionResult Register(UserInfo userInfo)
         {
             if (ModelState.IsValid)
             {
                 GSTInvoiceData.Repository.UserRepository.RegisterUser(userInfo, Url.Action("ConfirmEmail", "User", null, "http"));
-                return RedirectToAction("Index", "User");
+                TempData["Email"] = userInfo.EmailId;
+                return RedirectToAction("RegisterConfirmation", "User");
             }
-            return View(userInfo);
+            return RedirectToAction("Login","User");
+        }
+
+        [HttpGet]
+        public ActionResult RegisterConfirmation()
+        {
+            return View();
         }
 
         [HttpPost]
@@ -45,42 +48,47 @@ namespace Gstinvoice.Controllers
         [AllowAnonymous]
         public ActionResult ConfirmEmail(string Account_Confirmation_Token)
         {
-            ViewBag.TokenError = "Invalid Request to Confirm Email";
-            var currentUser = GSTInvoiceData.Repository.UserRepository.GetUserRequestToken(Account_Confirmation_Token);
+            TempData["success"] = "Invalid request to confirm Email";
+            UserInfo currentUser = GSTInvoiceData.Repository.UserRepository.GetUserRequestToken(Account_Confirmation_Token);
             if (currentUser != null)
             {
-                GSTInvoiceData.Repository.UserRepository.VerifyEmail(currentUser);
-                ViewBag.TokenError = "Your Email Verified Successfully";
+                if(GSTInvoiceData.Repository.UserRepository.VerifyEmail(currentUser))
+                { 
+                    TempData["success"] = "Email Verified Successfully,login to continue..";
+                }
             }
-            return RedirectToAction("RegisterConfirmation", "User");
+            return RedirectToAction("Login", "User");
         }
 
         #region Forgot Password
-        public ActionResult ForgetPassword()
+        [HttpPost]
+        public ActionResult ForgetPassword(UserLogin userLogin)
+        {
+           TempData["Message"]= GSTInvoiceData.Repository.UserRepository.SendForgetPasswordLink(userLogin.EmailId, Url.Action("ResetPassword", "User", null, "http"));
+            
+            return RedirectToAction("Login", "User");
+        }
+
+        public ActionResult ResetPassword()
         {
             return View();
         }
+
+
         [HttpPost]
-        public ActionResult ForgetPassword(UserForGotPassword forgotPassword)
+        public ActionResult ResetPassword(ResetPassword resetPassword)
         {
-            if (ModelState.IsValid)
-            {
-                var currentUser = GSTInvoiceData.Repository.UserRepository.GetUserByEmail(forgotPassword);
+            string forget_password_Token = ControllerContext.RouteData.GetRequiredString("forget_password_Token");
+                UserInfo currentUser = GSTInvoiceData.Repository.UserRepository.GetUserRequestToken(forget_password_Token);
                 if (currentUser != null)
                 {
-                    var resetLink = "<a href='" + Url.Action("ResetPassword", "Home", new { currentUser.EmailId, currentUser.UserId }, "http") + "'>Reset Password</a>";
-                    MailModel mailToSend = new MailModel();
-                    mailToSend.To = currentUser.EmailId;
-                    mailToSend.Subject = "reset password";
-                    mailToSend.Body = "please click this below link to reset your password<br/><br/><br/> " + resetLink;
-                    mailToSend.SendMail(mailToSend);
-                }
+                currentUser.Password = resetPassword.NewPassword;
+                GSTInvoiceData.Repository.UserRepository.ResetOrChangePassword(currentUser);
             }
-            return View();
+         
+            return RedirectToAction("Login", "User");
         }
         #endregion
-
-
         public ActionResult Login()
         {
             return View();
@@ -90,11 +98,16 @@ namespace Gstinvoice.Controllers
         {
             if (ModelState.IsValid)
             {
-                var currentUser = GSTInvoiceData.Repository.UserRepository.GetUserByEmailOrMobile(login);
+                UserInfo currentUser = GSTInvoiceData.Repository.UserRepository.GetUserByEmailOrMobile(login);
                 if (currentUser != null)
                 {
-                    Session["LoggedUserId"] = currentUser.UserId.ToString();
-                    return RedirectToAction("AfterLogin", "User");
+                    if (currentUser.IsEmailVerified)
+                    { 
+                        Session["LoggedUserId"] = currentUser.UserId.ToString();
+                        return RedirectToAction("AfterLogin", "User");
+                    }
+                    else
+                        ViewBag.Message = "Please verify your email for proceeding";
                 }
                 else
                 {
@@ -123,7 +136,6 @@ namespace Gstinvoice.Controllers
             }
 
         }
-
         public ActionResult ChangePassword()
         {
             return View();
@@ -148,22 +160,6 @@ namespace Gstinvoice.Controllers
                         return View(userInfo);
                     }
                 }
-            }
-            return View();
-        }
-
-        public ActionResult RegisterConfirmation()
-        {
-            GSTInvoiceDBContext db = new GSTInvoiceDBContext();
-            bool emailVarifybit = db.userInfo.Select(user => user.IsEmailVerified).FirstOrDefault() ;
-            int bit = emailVarifybit ? 1 : 0;
-            if(bit==1)
-            {
-                ViewBag.Success = "Thank you for your submission";
-            }
-            else
-            {
-                ViewBag.Error= "Invalid Request to Confirm Email";
             }
             return View();
         }

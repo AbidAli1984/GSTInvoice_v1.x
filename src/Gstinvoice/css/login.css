@@ -418,3 +418,9 @@ body {
     float: left;
     padding: 0px 5px;
 }
+
+.successmsg{
+    color:green;
+    float:left;
+}
+
