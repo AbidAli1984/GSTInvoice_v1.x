@@ -47,7 +47,7 @@
                 @Html.ValidationSummary(true)
                   <div>
                       <span class="errorMessage">@ViewBag.error</span>
-                     <span class="successmsg">@TempData["success"]</span>
+                     <span class="successmsg">@TempData["successMsg"]</span>
                     @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "errorMessage" })
                     @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { placeholder = "Email / Mobile No.*" } })
 

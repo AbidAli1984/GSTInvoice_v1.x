@@ -7,13 +7,13 @@ namespace GSTInvoiceData.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class modifydatatype : IMigrationMetadata
+    public sealed partial class addedcustomerInformation : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(modifydatatype));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addedcustomerInformation));
         
         string IMigrationMetadata.Id
         {
-            get { return "201709211313157_modify data type"; }
+            get { return "201709250644292_added customer Information"; }
         }
         
         string IMigrationMetadata.Source

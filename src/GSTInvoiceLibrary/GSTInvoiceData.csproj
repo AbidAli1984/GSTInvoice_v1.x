@@ -42,7 +42,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Helpers">
-      <HintPath>..\Gstinvoice\bin\System.Web.Helpers.dll</HintPath>
+      <HintPath>..\packages\System.Web.Helpers\System.Web.Helpers.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc">
       <HintPath>..\packages\System.Web.MVC\System.Web.Mvc.dll</HintPath>
@@ -56,23 +56,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GSTInvoiceDBContext.cs" />
-    <Compile Include="Migrations\201709211114015_Initial Database Creation.cs" />
-    <Compile Include="Migrations\201709211114015_Initial Database Creation.Designer.cs">
-      <DependentUpon>201709211114015_Initial Database Creation.cs</DependentUpon>
+    <Compile Include="Migrations\201709221217114_Initial Database Creation.cs" />
+    <Compile Include="Migrations\201709221217114_Initial Database Creation.Designer.cs">
+      <DependentUpon>201709221217114_Initial Database Creation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201709211224123_Update user fields.cs" />
-    <Compile Include="Migrations\201709211224123_Update user fields.Designer.cs">
-      <DependentUpon>201709211224123_Update user fields.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709211240561_Added Request Token Column.cs" />
-    <Compile Include="Migrations\201709211240561_Added Request Token Column.Designer.cs">
-      <DependentUpon>201709211240561_Added Request Token Column.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709211313157_modify data type.cs" />
-    <Compile Include="Migrations\201709211313157_modify data type.Designer.cs">
-      <DependentUpon>201709211313157_modify data type.cs</DependentUpon>
+    <Compile Include="Migrations\201709250644292_added customer Information.cs" />
+    <Compile Include="Migrations\201709250644292_added customer Information.Designer.cs">
+      <DependentUpon>201709250644292_added customer Information.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ChangePassword.cs" />
+    <Compile Include="Models\CustomerInformation.cs" />
     <Compile Include="Models\MailModel.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,18 +77,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709211114015_Initial Database Creation.resx">
-      <DependentUpon>201709211114015_Initial Database Creation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201709221217114_Initial Database Creation.resx">
+      <DependentUpon>201709221217114_Initial Database Creation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709211224123_Update user fields.resx">
-      <DependentUpon>201709211224123_Update user fields.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201709250644292_added customer Information.resx">
+      <DependentUpon>201709250644292_added customer Information.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709211240561_Added Request Token Column.resx">
-      <DependentUpon>201709211240561_Added Request Token Column.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709211313157_modify data type.resx">
-      <DependentUpon>201709211313157_modify data type.cs</DependentUpon>
-    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\GSTInvoiceData.dll" />
+    <Content Include="bin\Debug\GSTInvoiceData.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

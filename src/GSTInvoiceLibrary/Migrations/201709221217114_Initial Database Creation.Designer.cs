@@ -7,13 +7,13 @@ namespace GSTInvoiceData.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Updateuserfields : IMigrationMetadata
+    public sealed partial class InitialDatabaseCreation : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Updateuserfields));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialDatabaseCreation));
         
         string IMigrationMetadata.Id
         {
-            get { return "201709211224123_Update user fields"; }
+            get { return "201709221217114_Initial Database Creation"; }
         }
         
         string IMigrationMetadata.Source
