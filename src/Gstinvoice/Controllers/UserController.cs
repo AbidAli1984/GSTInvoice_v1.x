@@ -48,13 +48,13 @@ namespace Gstinvoice.Controllers
         [AllowAnonymous]
         public ActionResult ConfirmEmail(string Account_Confirmation_Token)
         {
-            TempData["success"] = "Invalid request to confirm Email";
+            TempData["successMsg"] = "Invalid request to confirm Email";
             UserInfo currentUser = GSTInvoiceData.Repository.UserRepository.GetUserRequestToken(Account_Confirmation_Token);
             if (currentUser != null)
             {
                 if(GSTInvoiceData.Repository.UserRepository.VerifyEmail(currentUser))
                 { 
-                    TempData["success"] = "Email Verified Successfully,login to continue..";
+                    TempData["successMsg"] = "Email Verified Successfully,login to continue..";
                 }
             }
             return RedirectToAction("Login", "User");
@@ -64,28 +64,28 @@ namespace Gstinvoice.Controllers
         [HttpPost]
         public ActionResult ForgetPassword(UserLogin userLogin)
         {
-           TempData["Message"]= GSTInvoiceData.Repository.UserRepository.SendForgetPasswordLink(userLogin.EmailId, Url.Action("ResetPassword", "User", null, "http"));
+           TempData["successMsg"] = GSTInvoiceData.Repository.UserRepository.SendForgetPasswordLink(userLogin.EmailId, Url.Action("ResetPassword", "User", null, "http"));
             
             return RedirectToAction("Login", "User");
         }
 
-        public ActionResult ResetPassword()
+        public ActionResult ResetPassword(string forget_password_Token)
         {
-            return View();
+            GSTInvoiceData.Models.ResetPassword resetPassword = new GSTInvoiceData.Models.ResetPassword();
+            resetPassword.RequestToken = forget_password_Token;
+            return View(resetPassword);
         }
 
 
         [HttpPost]
         public ActionResult ResetPassword(ResetPassword resetPassword)
         {
-            string forget_password_Token = ControllerContext.RouteData.GetRequiredString("forget_password_Token");
-                UserInfo currentUser = GSTInvoiceData.Repository.UserRepository.GetUserRequestToken(forget_password_Token);
+                UserInfo currentUser = GSTInvoiceData.Repository.UserRepository.GetUserRequestToken(resetPassword.RequestToken);
                 if (currentUser != null)
                 {
                 currentUser.Password = resetPassword.NewPassword;
                 GSTInvoiceData.Repository.UserRepository.ResetOrChangePassword(currentUser);
             }
-         
             return RedirectToAction("Login", "User");
         }
         #endregion
@@ -114,7 +114,7 @@ namespace Gstinvoice.Controllers
                     ViewBag.Message = "Invalid EmailId/Password";
                 }
             }
-            return View(login);
+            return View();
         }
 
         [HttpPost]
