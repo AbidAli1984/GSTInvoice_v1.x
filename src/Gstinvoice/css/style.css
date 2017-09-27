@@ -45,7 +45,7 @@ ul.docListWindow .progress-bar {
     font-size: 10px;
 }
 
-// Notifications
+/* Notifications*/
 
 .noti-information .notification-list {
     padding: 0;
@@ -266,7 +266,7 @@ section.panel.tab-border {
     color: white;
 }
 
-// widget
+/* widget*/
 .sidebar .widget {
     background: #262936;
     border-radius: 10px;
@@ -657,19 +657,16 @@ span.online-status {
     font-size: 25px;
 }
 
-/*------------------------------------------------------------*/
 .new_btn{
-    margin-left:766px;
+    float: right;
+    margin-right:25px;
 }
-
 .caret_style{
     width:45px;
 }
-
 .field_model{
     width:254px;
 }
-
 #modal{
     height:450px;
 }
@@ -706,15 +703,12 @@ span.online-status {
 .column_select{
     margin-left:-86px;
 }
-
 .color_red{
     color:rosybrown;
 }
-
 .space_radio{
     margin-left:-18px;
 }
-
 .font_color{
     color:white;
 }
@@ -724,21 +718,19 @@ span.online-status {
 }
 
 .card_size{
-     margin-left:35px;
+     margin-left:52px;
     margin-top:120px; 
     width:769px;
 }
 
-.para_size{
-    margin-left:50px!important;
+#body_color{
+    background-color: #eaeef3;
+}
+#drop_style{
+    margin-left:445px;
 }
 
-#img_size_1{
-margin-left:299px;
+.description_style{
+    width:474px; 
+    height:70px; 
 }
-
-#para_size_1{
-     margin-left:204px;
-    font-size:20px;
-}
-/*--------------------------------------------------------------*/

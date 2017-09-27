@@ -12,8 +12,6 @@
         function myfun() {
 
             $('#ContactDisplayName').append($("<option>" + $('#salutaion').val() + " " + $('#FirstName').val() + " " + $('#LastName').val() + "</option>"));
-
-
         }
 
 
@@ -32,10 +30,10 @@
             </div>
             <ol class="breadcrumb page-breadcrumb pull-right">
                 <li>
-                    <i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                    <i class="fa fa-home"></i>&nbsp;<a class="parent-item" href='@Url.Action("Dashboard", "User")'>Home</a>&nbsp;<i class="fa fa-angle-right"></i>
                 </li>
                 <li>
-                    <a class="parent-item" href="#">Contact</a>&nbsp;<i class="fa fa-angle-right">    </i>
+                    <a class="parent-item" href="#">New Contact</a>&nbsp;
                 </li>
             </ol>
         </div>
@@ -49,7 +47,7 @@
                 <div class="card-body" id="bar-parent1">
 
                     @{
-                        Html.RenderPartial("~/Views/PartialViews/_CustomerInformation.cshtml", Model);
+                        Html.RenderPartial("PartialViews/_CustomerInformation", Model);
                     }
                     <div class="row">
                         <div class="col-lg-12">
@@ -80,23 +78,23 @@
                     <div class="row" style="display:block" id="otherdetails">
 
                         @{
-                            Html.RenderPartial("~/Views/PartialViews/_CustomerOtherDetails.cshtml", Model.customerOtherDetails);
+                            Html.RenderPartial("PartialViews/_CustomerOtherDetails", Model.customerOtherDetails);
                         }
                     </div>
                     <div class="row" style="display:none" id="addressform">
                         @{
-                            Html.RenderPartial("~/Views/PartialViews/_Address.cshtml", Model.address);
+                            Html.RenderPartial("PartialViews/_Address", Model.address);
                         }
                     </div>
 
                     <div class="row" style="display:none" id="contactpersons">
                         @{
-                            Html.RenderPartial("~/Views/PartialViews/_ContactPerson.cshtml", Model.contactPerson);
+                            Html.RenderPartial("PartialViews/_ContactPerson", Model.contactPerson);
                         }
                     </div>
                     <div class="row" style="display:none" id="remarks">
                         @{
-                            Html.RenderPartial("~/Views/PartialViews/_Remarks.cshtml", Model);
+                            Html.RenderPartial("PartialViews/_Remarks", Model);
                         }
                     </div>
                     <div class="form-actions">

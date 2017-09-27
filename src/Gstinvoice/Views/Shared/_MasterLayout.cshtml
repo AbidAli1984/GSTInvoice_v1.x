@@ -2,8 +2,6 @@
 @{
     ViewBag.Title = "_MasterLayout";
 }
-
-<h2>_MasterLayout</h2>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Mirrored from radixtouch.in/hospital/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Sep 2017 11:09:54 GMT -->
@@ -50,7 +48,7 @@
                     </div>
                 </div>
                 <!-- logo end -->
-                <form class="search-form-opened" action="#" method="GET">
+                @*<form class="search-form-opened" action="#" method="GET">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search..." name="query">
                         <span class="input-group-btn">
@@ -59,7 +57,7 @@
                             </a>
                         </span>
                     </div>
-                </form>
+                </form>*@
                 <!-- start mobile menu -->
                 <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
                     <span></span>
@@ -317,15 +315,14 @@
                                 </div>
                             </li>
                             <li class="nav-item start active open">
-                                <a href="index-2.html" class="nav-link ">
+                                <a href='@Url.Action("Dashboard", "User")' class="nav-link ">
                                     <i class="fa fa-tachometer"></i> <span class="title">Dashboard</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="contact_info.html" class="nav-link nav-toggle">
+                                <a href='@Url.Action("CustomerInformation", "Customer")' class="nav-link nav-toggle">
                                     <i class="fa fa-envelope"></i>
                                     <span class="title">Contacts</span>
-                                    <span class="arrow"></span>
                                 </a>
                             </li>
                             <li class="nav-item ">
@@ -616,7 +613,7 @@
                                             </div>
                                         </div>
                                         <div class="post in">
-                                            <img class="avatar" alt="" src="img/doc/doc5.svg" />
+                                            <img class="avatar" alt="" src="~/img/doc/doc5.svg" />
                                             <div class="message">
                                                 <span class="arrow"></span> <a href="javascript:;" class="name">Jacob Ryan</a> <span class="datetime">9:10</span>
                                                 <span class="body"> please give me 10 minutes. </span>

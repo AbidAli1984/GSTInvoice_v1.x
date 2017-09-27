@@ -414,7 +414,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CustomerinfoController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -437,11 +437,6 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\PartialViews\_Register.cshtml" />
     <Content Include="Views\User\AfterLogin.cshtml" />
-    <Content Include="Views\Customerinfo\Address.cshtml" />
-    <Content Include="Views\Customerinfo\ContactPerson.cshtml" />
-    <Content Include="Views\Customerinfo\CustomerInformation.cshtml" />
-    <Content Include="Views\Customerinfo\CustomerOtherDetails.cshtml" />
-    <Content Include="Views\Customerinfo\Remarks.cshtml" />
     <Content Include="Views\PartialViews\_Address.cshtml" />
     <Content Include="Views\PartialViews\_ContactPerson.cshtml" />
     <Content Include="Views\PartialViews\_CustomerInformation.cshtml" />
@@ -451,6 +446,13 @@
     <Content Include="Views\User\ChangePassword.cshtml" />
     <Content Include="Views\User\ResetPassword.cshtml" />
     <Content Include="Views\Shared\_MasterLayout.cshtml" />
+    <Content Include="Views\Customer\AddCustomer.cshtml" />
+    <Content Include="Views\Customer\CustomerInformation.cshtml" />
+    <Content Include="Views\Customer\PartialViews\_Address.cshtml" />
+    <Content Include="Views\Customer\PartialViews\_ContactPerson.cshtml" />
+    <Content Include="Views\Customer\PartialViews\_CustomerInformation.cshtml" />
+    <Content Include="Views\Customer\PartialViews\_CustomerOtherDetails.cshtml" />
+    <Content Include="Views\Customer\PartialViews\_Remarks.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

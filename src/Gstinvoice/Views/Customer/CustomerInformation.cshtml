@@ -1,0 +1,258 @@
+﻿@model GSTInvoiceData.Models.CustomerInformation
+
+@{
+    ViewBag.Title = "CustomerInformation";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+<div class="page-bar">
+    <div class="page-title-breadcrumb">
+        <div class=" pull-left">
+            <div class="page-title">Contacts</div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li>
+                <i class="fa fa-home"></i>&nbsp;<a class="parent-item" href='@Url.Action("Dashboard", "User")'>Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="parent-item" href="#">Contact</a>&nbsp;
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="card card-topline-yellow">
+    <div class="card-head">
+        <!-- start language menu -->
+        <div class="dropdown language-switch" style="margin-left:-2px;">
+            <form class="search-form-opened" action="#" method="GET">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search..." name="query">
+                    <span class="input-group-btn">
+                        <a href="javascript:;" class="btn submit">
+                            <i class="icon-magnifier"></i>
+                        </a>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <div class="new_btn">
+            <a href='@Url.Action("AddCustomer", "Customer")'>
+                <button style="height:31px;margin-top:10px;" class="btn btn-xs btn-success">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    New
+                </button>
+            </a>
+
+            <div class="btn-group">
+                <button class="btn btn-sm btn-Secondary dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false">
+                    <i style="font-size:1.5em;" class="fa fa-bars" aria-hidden="true"></i>
+                </button>
+                <ul class="dropdown-menu" style="right:0; left:auto;" role="menu">
+                    <li>
+                        <a href="javascript:;"> </a>
+                    </li>
+                    <li>
+                        <a href="contact_info.html">Name</a>
+                    </li>
+                    <li>
+                        <a href="contact_info.html">Company Name</a>
+                    </li>
+                    <li>
+                        <a href="contact_info.html">Recievables</a>
+                    </li>
+                    <li>
+                        <a href="contact_info.html">Unused Credits </a>
+                    </li>
+                    <li>
+                        <a href="contact_info.html">Created Time</a>
+                    </li>
+                    <li>
+                        <a href="contact_info.html">Last Modified Time</a>
+                    </li>
+                    <li class="divider"> </li>
+                    <li>
+                        <a href="import_contacts.html">
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                            Import Contacts
+                        </a>
+                        <a href="import_contact_persons.html">
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                            Import Contact Persons
+                        </a>
+                    </li>
+                    <li class="divider"> </li>
+                    <li>
+                        <a data-toggle="modal" data-target="#export_contacts">
+                            <i class="fa fa-upload" aria-hidden="true"></i>
+                            Export Contacts
+                        </a>
+                        <a data-toggle="modal" data-target="#export_contact_persons">
+                            <i class="fa fa-upload" aria-hidden="true"></i>
+                            Export Contact Persons
+                        </a>
+                    </li>
+                    <li class="divider"> </li>
+                    <li>
+                        <a href="contact_info.html">
+                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                            Refresh List
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card-body ">
+        <div class="table-scrollable">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox">Name</th>
+                        <th>Company Name</th>
+                        <th>Email</th>
+                        <th>Work Phone</th>
+                        <th>Receivables</th>
+                        <th>Unused Credits</th>
+                        <th class="caret_style">
+                            <i data-toggle="modal" data-target="#exampleModalLong" class="fa fa-search" aria-hidden="true"></i>
+                        </th>
+
+
+                        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-4">
+                                                Search
+                                            </label>
+                                            <div class="col-md-8">
+                                                <select type="text" name="name" data-required="1" class="form-control field_model">
+                                                    <option class="opt"></option>
+                                                    <option class="opt">Mr. smith </option>
+                                                    <option class="opt">Mr. smith </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="modal" class="modal-body">
+                                        <form action="#" id="form_sample_1" class="form-horizontal">
+                                            <div class="form-body">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">
+                                                        Contact Display Name
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" name="name" data-required="1" class="form-control field_model">
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">
+                                                        Company Name
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" name="name" data-required="1" class="form-control field_model">
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">
+                                                        First Name
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" name="name" data-required="1" class="form-control field_model">
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">
+                                                        Last Name
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" name="name" data-required="1" class="form-control field_model">
+                                                    </div>
+                                                </div>
+                                                <br><div class="form-group">
+                                                    <label class="control-label col-md-4">
+                                                        Email
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" name="name" data-required="1" class="form-control field_model">
+                                                    </div>
+                                                </div>
+                                                <br><div class="form-group">
+                                                    <label class="control-label col-md-4">
+                                                        Status
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <select type="text" name="name" data-required="1" class="form-control field_model">
+                                                            <option class="opt">All</option>
+                                                            <option class="opt">Active</option>
+                                                            <option class="opt">Inactive</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <br><div class="form-group">
+                                                    <label class="control-label col-md-4">
+                                                        phone
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" name="name" data-required="1" class="form-control field_model">
+                                                    </div>
+                                                </div>
+                                                <br><div class="form-group">
+                                                    <label class="control-label col-md-4">
+                                                        Address
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" name="name" data-required="1" class="form-control field_model">
+                                                    </div>
+                                                </div>
+                                                <br><div class="form-group">
+                                                    <label class="control-label col-md-4">
+                                                        Notes
+                                                    </label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" name="name" data-required="1" class="form-control field_model">
+                                                    </div>
+                                                </div>
+                                                <br><div class="form-group">
+                                                    <label class="control-label col-md-4">
+                                                        Challan No
+                                                    </label>
+                                                    <div class="col-md-3">
+                                                        <input type="text" name="name" data-required="1" class="form-control">
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <input type="text" name="name" data-required="1" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <br>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <hr>
+                                    <div class="modal-footer">
+                                        <button id="btn_success" type="button" class="btn btn-success"><a href="contact_info.html" class="font_color">Search</a></button>
+                                        <button id="btn_default" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox"><a href="">fdhdj</a></td>
+                        <td>fdhdj </td>
+                        <td>fdhdj </td>
+                        <td>fdhdj </td>
+                        <td>fdhdj </td>
+                        <td>fdhdj </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

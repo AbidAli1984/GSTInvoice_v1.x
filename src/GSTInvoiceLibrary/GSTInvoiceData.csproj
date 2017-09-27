@@ -42,7 +42,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Helpers">
-      <HintPath>..\packages\System.Web.Helpers\System.Web.Helpers.dll</HintPath>
+      <HintPath>..\Gstinvoice\bin\System.Web.Helpers.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc">
       <HintPath>..\packages\System.Web.MVC\System.Web.Mvc.dll</HintPath>
@@ -56,13 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GSTInvoiceDBContext.cs" />
-    <Compile Include="Migrations\201709221217114_Initial Database Creation.cs" />
-    <Compile Include="Migrations\201709221217114_Initial Database Creation.Designer.cs">
-      <DependentUpon>201709221217114_Initial Database Creation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709250644292_added customer Information.cs" />
-    <Compile Include="Migrations\201709250644292_added customer Information.Designer.cs">
-      <DependentUpon>201709250644292_added customer Information.cs</DependentUpon>
+    <Compile Include="Migrations\201709260514583_Added Customer Information.cs" />
+    <Compile Include="Migrations\201709260514583_Added Customer Information.Designer.cs">
+      <DependentUpon>201709260514583_Added Customer Information.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ChangePassword.cs" />
@@ -77,19 +73,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709221217114_Initial Database Creation.resx">
-      <DependentUpon>201709221217114_Initial Database Creation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201709260514583_Added Customer Information.resx">
+      <DependentUpon>201709260514583_Added Customer Information.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709250644292_added customer Information.resx">
-      <DependentUpon>201709250644292_added customer Information.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bin\Debug\GSTInvoiceData.dll" />
-    <Content Include="bin\Debug\GSTInvoiceData.pdb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

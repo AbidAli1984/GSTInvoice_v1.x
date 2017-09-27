@@ -10,7 +10,7 @@ using System.Dynamic;
 
 namespace Gstinvoice.Controllers
 {
-    public class CustomerinfoController : Controller
+    public class CustomerController : Controller
     {
         // GET: Customerinfo
 
@@ -22,18 +22,33 @@ namespace Gstinvoice.Controllers
             return View();
         }
         
-        public ActionResult CustomerInformation()
+        public ActionResult AddCustomer()
         {
             CustomerInformation customerInformation = new CustomerInformation();
             customerInformation.customerOtherDetails = new CustomerOthetDetails();
             customerInformation.address = new Address();
-            customerInformation.contactPerson = new List<ContactPerson>();
+
+            List<ContactPerson> contactPerson = new List<ContactPerson>();
+            contactPerson.Add(new ContactPerson()
+            {
+                Customerid = 0,
+                ContactPersonguid = Guid.NewGuid(),
+                Salutation = "Dear Mr.",
+                FirstName = string.Empty,
+                LastName = string.Empty,
+                EmailAddress = string.Empty,
+                Id = 0,
+                MobileNumber = string.Empty,
+                WorkPhoneNumber = string.Empty
+            });
+
+            customerInformation.contactPerson = contactPerson;
             
-            return View();
+            return View(customerInformation);
         }
 
         [HttpPost]
-        public ActionResult CustomerInformation(CustomerInformation customerInformation)
+        public ActionResult AddCustomer(CustomerInformation customerInformation)
         {
             if (ModelState.IsValid)
             {
@@ -50,22 +65,7 @@ namespace Gstinvoice.Controllers
         }
 
 
-        public ActionResult CustomerOtherDetails()
-        {
-            return View();
-        }
-
-        public ActionResult Address()
-        {
-            return View();
-        }
-
-        public ActionResult ContactPerson()
-        {
-            return View();
-        }
-
-        public ActionResult Remarks()
+        public ActionResult CustomerInformation()
         {
             return View();
         }
