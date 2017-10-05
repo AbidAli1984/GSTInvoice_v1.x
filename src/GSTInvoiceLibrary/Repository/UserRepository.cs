@@ -21,6 +21,8 @@ namespace GSTInvoiceData.Repository
             userInfo.RequestTokenNo = Guid.NewGuid().ToString().Replace("-", "");
             userInfo.UserType = 0;
             userInfo.RequestDateTime = DateTime.Now;
+            userInfo.RegisteredDate = DateTime.Now;
+            userInfo.RenewelDate = DateTime.Now;
             dbContext.userInfo.Add(userInfo);
             dbContext.SaveChanges();
 
@@ -61,7 +63,7 @@ namespace GSTInvoiceData.Repository
                     mailToSend.Subject = "Password Reset Confirmation";
                     mailToSend.Body = MessageBody.ToString();
                     mailToSend.SendMail(mailToSend);
-                    message = "Email with link has been sent to your email for password reset";
+                    message = "Password reset link has been sent to your email";
                 }
                 else
                 {

@@ -51,6 +51,10 @@ namespace GSTInvoiceData.Models
         public DateTime RequestDateTime { get; set; }
 
         public string RequestTokenNo { get; set; }
+
+        public DateTime RegisteredDate { get; set; }
+
+        public DateTime RenewelDate { get; set; }
     }
 
     public enum UserType

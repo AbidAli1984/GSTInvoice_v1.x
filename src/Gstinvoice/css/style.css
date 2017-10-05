@@ -734,3 +734,9 @@ span.online-status {
     width:474px; 
     height:70px; 
 }
+
+/*******************************************************/
+.float_header{
+     float:right;
+    margin-right:23px;
+}
