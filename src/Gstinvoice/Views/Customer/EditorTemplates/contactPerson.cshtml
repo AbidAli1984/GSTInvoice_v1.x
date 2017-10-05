@@ -1,0 +1,17 @@
+﻿@model GSTInvoiceData.Models.ContactPerson
+@{
+    ViewBag.Title = "_ContactPerson";
+}
+<tr class="contacts-record-template contacts-record">
+    <td>
+        @Html.DropDownListFor(model => model.Salutation, new SelectList(new[] { "Dear Mr.", "Dear Mrs.", "Dear Ms." }), "Salutation", new { @class = "form-control" })
+    </td>
+    <td>@Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } }) </td>
+    <td>@Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })</td>
+    <td>@Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })</td>
+    <td>@Html.EditorFor(model => model.WorkPhoneNumber, new { htmlAttributes = new { @class = "form-control" } })</td>
+    <td>@Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control" } })</td>
+</tr>
+
+
+

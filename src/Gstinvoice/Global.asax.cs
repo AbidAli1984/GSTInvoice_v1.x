@@ -15,7 +15,7 @@ namespace Gstinvoice
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            //Database.SetInitializer<GSTInvoiceDBContext>(new DropCreateDatabaseIfModelChanges<GSTInvoiceDBContext>());
+            Database.SetInitializer<GSTInvoiceDBContext>(new DropCreateDatabaseIfModelChanges<GSTInvoiceDBContext>());
            
         }
     }

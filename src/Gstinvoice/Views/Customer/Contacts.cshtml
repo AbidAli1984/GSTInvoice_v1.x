@@ -1,0 +1,136 @@
+﻿@using GSTInvoiceData.ViewModels
+@model IEnumerable<CustomerDetailViewModel>
+
+@{
+    ViewBag.Title = "CustomerInformation";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+<div class="page-bar">
+    <div class="page-title-breadcrumb">
+        <div class=" pull-left">
+            <div class="page-title">Contacts</div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li>
+                <i class="fa fa-home"></i>&nbsp;<a class="parent-item" href='@Url.Action("Dashboard", "User")'>Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="parent-item" href="#">Contact</a>&nbsp;
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="card card-topline-yellow">
+    <div class="card-head">
+        <!-- start language menu -->
+        <div class="dropdown language-switch" style="margin-left:-2px;">
+            <form class="search-form-opened" action="#" method="GET">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search..." name="query">
+                    <span class="input-group-btn">
+                        <a href="javascript:;" class="btn submit">
+                            <i class="icon-magnifier"></i>
+                        </a>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <div class="new_btn">
+            <a href='@Url.Action("AddCustomer", "Customer")'>
+                <button style="height:31px;margin-top:10px;" class="btn btn-xs btn-success">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    New
+                </button>
+            </a>
+
+            <div class="btn-group">
+                <button class="btn btn-sm btn-Secondary dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false">
+                    <i style="font-size:1.5em;" class="fa fa-bars" aria-hidden="true"></i>
+                </button>
+                <ul class="dropdown-menu" style="right:0; left:auto;" role="menu">
+                    <li>
+                        <a href="javascript:;"> </a>
+                    </li>
+                    <li>
+                        <a href="contact_info.html">Name</a>
+                    </li>
+                    <li>
+                        <a href="contact_info.html">Company Name</a>
+                    </li>
+                    <li>
+                        <a href="contact_info.html">Recievables</a>
+                    </li>
+                    <li>
+                        <a href="contact_info.html">Unused Credits </a>
+                    </li>
+                    <li>
+                        <a href="contact_info.html">Created Time</a>
+                    </li>
+                    <li>
+                        <a href="contact_info.html">Last Modified Time</a>
+                    </li>
+                    <li class="divider"> </li>
+                    <li>
+                        <a href="import_contacts.html">
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                            Import Contacts
+                        </a>
+                        <a href="import_contact_persons.html">
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                            Import Contact Persons
+                        </a>
+                    </li>
+                    <li class="divider"> </li>
+                    <li>
+                        <a data-toggle="modal" data-target="#export_contacts">
+                            <i class="fa fa-upload" aria-hidden="true"></i>
+                            Export Contacts
+                        </a>
+                        <a data-toggle="modal" data-target="#export_contact_persons">
+                            <i class="fa fa-upload" aria-hidden="true"></i>
+                            Export Contact Persons
+                        </a>
+                    </li>
+                    <li class="divider"> </li>
+                    <li>
+                        <a href="contact_info.html">
+                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                            Refresh List
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card-body ">
+        <div class="table-scrollable">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox"></th>
+                        <th>Company Name</th>
+                        <th>Contact Name</th>
+                        <th>Receivables</th>
+                        <th>City</th>
+                        <th>Email</th>
+                        <th>Work Phone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (CustomerDetailViewModel customerList in Model)
+                    {
+                        <tr class="clickable ember-view" id="@customerList.customerId">
+                            <td><input type="checkbox"></td>
+                            <td>@customerList.CompanyName</td>
+                            <td>@customerList.ContactName</td>
+                            <td>₹ @customerList.Receivables</td>
+                            <td>@customerList.City</td>
+                            <td>@customerList.Email</td>
+                            <td>@customerList.WorkPhone</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
