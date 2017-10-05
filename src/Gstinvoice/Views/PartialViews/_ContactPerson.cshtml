@@ -33,7 +33,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    @Html.DropDownListFor(model => model.Salutation, new SelectList(new[] { "Dear Mr.", "Dear Mrs.", "Dear Ms." }), "Salutation", new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.Salutation, new SelectList(new[] { "Mr.", "Mrs.", "Ms.", "Miss.", "Dr." }), "Salutation", new { @class = "form-control" })
                                 </td>
                                 <td>@Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } }) </td>
                                 <td>@Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })</td>

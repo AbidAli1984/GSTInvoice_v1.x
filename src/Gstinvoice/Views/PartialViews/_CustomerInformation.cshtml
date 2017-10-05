@@ -24,7 +24,7 @@
                     Primary Contact
                 </label>
                 <div class="col-md-2">
-                    @Html.DropDownListFor(model => model.Salutaion, new SelectList(new[] { "Dear Mr.", "Dear Mrs.", "Dear Ms." }), "Salutation", new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.Salutation, new SelectList(new[] { "Dear Mr.", "Dear Mrs.", "Dear Ms." }), "Salutation", new { @class = "form-control" })
                 </div>
                 <div class="col-md-2">
                     @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { placeholder = "First Name", @class = "form-control" } })

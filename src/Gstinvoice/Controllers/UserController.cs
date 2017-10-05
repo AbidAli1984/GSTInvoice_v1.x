@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using GSTInvoiceData;
 using GSTInvoiceData.Models;
+using GSTInvoiceData.ViewModels;
 using System.Data.Entity;
 
 namespace Gstinvoice.Controllers
@@ -13,22 +14,22 @@ namespace Gstinvoice.Controllers
     {
         // GET: User
         public ActionResult Index()
-        {    
+        {
             return View();
         }
 
         #region Register
 
         [HttpPost]
-        public ActionResult Register(UserInfo userInfo)
+        public ActionResult Register(RegisterViewModel registerUser)
         {
             if (ModelState.IsValid)
             {
-                GSTInvoiceData.Repository.UserRepository.RegisterUser(userInfo, Url.Action("ConfirmEmail", "User", null, "http"));
-                TempData["Email"] = userInfo.EmailId;
+                GSTInvoiceData.Repository.UserRepository.RegisterUser(registerUser, Url.Action("ConfirmEmail", "User", null, "http"));
+                TempData["Email"] = registerUser.EmailId;
                 return RedirectToAction("RegisterConfirmation", "User");
             }
-            return RedirectToAction("Login","User");
+            return RedirectToAction("Login", "User");
         }
 
         [HttpGet]
@@ -52,8 +53,8 @@ namespace Gstinvoice.Controllers
             UserInfo currentUser = GSTInvoiceData.Repository.UserRepository.GetUserRequestToken(Account_Confirmation_Token);
             if (currentUser != null)
             {
-                if(GSTInvoiceData.Repository.UserRepository.VerifyEmail(currentUser))
-                { 
+                if (GSTInvoiceData.Repository.UserRepository.VerifyEmail(currentUser))
+                {
                     TempData["successMsg"] = "Email Verified Successfully,login to continue..";
                 }
             }
@@ -62,10 +63,10 @@ namespace Gstinvoice.Controllers
 
         #region Forgot Password
         [HttpPost]
-        public ActionResult ForgetPassword(UserLogin userLogin)
+        public ActionResult ForgetPassword(LoginViewModel userLogin)
         {
-           TempData["successMsg"] = GSTInvoiceData.Repository.UserRepository.SendForgetPasswordLink(userLogin.EmailId, Url.Action("ResetPassword", "User", null, "http"));
-            
+            TempData["successMsg"] = GSTInvoiceData.Repository.UserRepository.SendForgetPasswordLink(userLogin.EmailId, Url.Action("ResetPassword", "User", null, "http"));
+
             return RedirectToAction("Login", "User");
         }
 
@@ -80,9 +81,9 @@ namespace Gstinvoice.Controllers
         [HttpPost]
         public ActionResult ResetPassword(ResetPassword resetPassword)
         {
-                UserInfo currentUser = GSTInvoiceData.Repository.UserRepository.GetUserRequestToken(resetPassword.RequestToken);
-                if (currentUser != null)
-                {
+            UserInfo currentUser = GSTInvoiceData.Repository.UserRepository.GetUserRequestToken(resetPassword.RequestToken);
+            if (currentUser != null)
+            {
                 currentUser.Password = resetPassword.NewPassword;
                 GSTInvoiceData.Repository.UserRepository.ResetOrChangePassword(currentUser);
             }
@@ -91,10 +92,13 @@ namespace Gstinvoice.Controllers
         #endregion
         public ActionResult Login()
         {
-            return View();
+            if (Session["LoggedUserId"] == null)
+                return View();
+            else
+                return RedirectToAction("Dashboard");
         }
         [HttpPost]
-        public ActionResult Login(UserLogin login)
+        public ActionResult Login(LoginViewModel login)
         {
             if (ModelState.IsValid)
             {
@@ -102,12 +106,12 @@ namespace Gstinvoice.Controllers
                 if (currentUser != null)
                 {
                     if (currentUser.IsEmailVerified)
-                    { 
+                    {
                         Session["LoggedUserId"] = currentUser.UserId.ToString();
-                        return RedirectToAction("AfterLogin", "User");
+                        return RedirectToAction("Dashboard", "User");
                     }
                     else
-                        ViewBag.Message = "Please verify your email for proceeding";
+                        ViewBag.Message = "Please verify your email before proceeding";
                 }
                 else
                 {
@@ -124,17 +128,12 @@ namespace Gstinvoice.Controllers
             return Json(userExist, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult AfterLogin()
+        public ActionResult Dashboard()
         {
             if (Session["LoggedUserId"] != null)
-            {
                 return View();
-            }
             else
-            {
-                return RedirectToAction("Register");
-            }
-
+                return RedirectToAction("Login", "User");
         }
         public ActionResult ChangePassword()
         {

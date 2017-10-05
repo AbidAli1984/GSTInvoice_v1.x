@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using GSTInvoiceData;
 using GSTInvoiceData.Models;
+using GSTInvoiceData.ViewModels;
 using System.Data.Entity;
 using System.Dynamic;
 
@@ -14,7 +15,7 @@ namespace Gstinvoice.Controllers
     {
         // GET: Customerinfo
 
-        GSTInvoiceDBContext userContext = new GSTInvoiceDBContext();
+        GSTInvoiceDBContext customerContext = new GSTInvoiceDBContext();
 
 
         public ActionResult Index()
@@ -25,25 +26,6 @@ namespace Gstinvoice.Controllers
         public ActionResult AddCustomer()
         {
             CustomerInformation customerInformation = new CustomerInformation();
-            customerInformation.customerOtherDetails = new CustomerOthetDetails();
-            customerInformation.address = new Address();
-
-            List<ContactPerson> contactPerson = new List<ContactPerson>();
-            contactPerson.Add(new ContactPerson()
-            {
-                Customerid = 0,
-                ContactPersonguid = Guid.NewGuid(),
-                Salutation = "Dear Mr.",
-                FirstName = string.Empty,
-                LastName = string.Empty,
-                EmailAddress = string.Empty,
-                Id = 0,
-                MobileNumber = string.Empty,
-                WorkPhoneNumber = string.Empty
-            });
-
-            customerInformation.contactPerson = contactPerson;
-            
             return View(customerInformation);
         }
 
@@ -52,22 +34,17 @@ namespace Gstinvoice.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!userContext.customerInformation.Any(user => user.Id == customerInformation.Id))
-                {
-                    customerInformation.Customerguid = Guid.NewGuid();
-
-                    userContext.customerInformation.Add(customerInformation);
-                    userContext.SaveChanges();
-                    return RedirectToAction("");
-                }
+                GSTInvoiceData.Repository.CustomerRepository.AddorUpdateCustomer(customerInformation);
+                return RedirectToAction("Contacts");
             }
             return View(customerInformation);
         }
 
 
-        public ActionResult CustomerInformation()
+        public ActionResult Contacts()
         {
-            return View();
+            List<CustomerDetailViewModel> customers = GSTInvoiceData.Repository.CustomerRepository.GetCustomerForListing();
+            return View(customers);
         }
     }
 }

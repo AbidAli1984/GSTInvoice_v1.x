@@ -1,4 +1,4 @@
-﻿@model Gstinvoice.Models.Address
+﻿@model GSTInvoiceData.Models.Address
 @{
     ViewBag.Title = "_Address";
 }
@@ -23,7 +23,7 @@
             document.getElementById("ShippingPinCode").value = billingPinCode;
 
             var billingCountry = document.getElementById("BillingCountry").value;
-            document.getElementById("ShippingCountry").value =billingCountry;
+            document.getElementById("ShippingCountry").value = billingCountry;
 
             var billingFax = document.getElementById("BillingFax").value;
             document.getElementById("ShippingFax").value = billingFax;
@@ -32,12 +32,7 @@
     </script>
 </head>
 <body>
-
-
-
-    @using (Html.BeginForm("Address", "Customerinfo", FormMethod.Post, new { id = "form_sample_1", @class = "form-horizontal" }))
-    {
-        @Html.ValidationSummary(true)
+    <div id="form_sample_1" class="form-horizontal">
         <div class="col-md-6 col-sm-6">
             <div class="card card-topline-yellow">
                 <div class="card-head">
@@ -186,8 +181,7 @@
                 </div>
             </div>
         </div>
-
-    }
+    </div>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

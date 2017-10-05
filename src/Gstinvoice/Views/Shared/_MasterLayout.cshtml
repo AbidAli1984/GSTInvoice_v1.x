@@ -28,7 +28,11 @@
     <link href="~/css/theme_style.css" rel="stylesheet" id="rt_style_components" type="text/css" />
     <link href="~/css/plugins.min.css" rel="stylesheet" type="text/css" />
     <link href="~/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/StyleCustom.css" rel="stylesheet" />
     <link href="~/css/responsive.css" rel="stylesheet" type="text/css" />
+    
+    <!-- Angular JS -->
+    <script src="~/scripts/angular.js"></script>
 
     <!-- favicon -->
     <link rel="shortcut icon" href="~/img/favicon.ico" />
@@ -320,7 +324,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href='@Url.Action("CustomerInformation", "Customer")' class="nav-link nav-toggle">
+                                <a href='@Url.Action("Contacts", "Customer")' class="nav-link nav-toggle">
                                     <i class="fa fa-envelope"></i>
                                     <span class="title">Contacts</span>
                                 </a>
@@ -786,40 +790,6 @@
     <script src="~/js/chart-js/Chart.bundle.js" type="text/javascript"></script>
     <script src="~/js/chart-js/utils.js" type="text/javascript"></script>
     <script src="~/js/chart-js/home-data.js" type="text/javascript"></script>
-    <script>
-
-    function myFunction() {
-        document.getElementById("otherdetails").style.display = "block";
-        document.getElementById("addressform").style.display = "none";
-          document.getElementById("remarks").style.display = "none";
-              document.getElementById("contactpersons").style.display = "none";
-    }
-
-        function myFunction_form() {
-            document.getElementById("addressform").style.display = "block";
-            document.getElementById("otherdetails").style.display = "none";
-             document.getElementById("contactpersons").style.display = "none";
-             document.getElementById("remarks").style.display = "none";
-    }
-
-
-        function myFunction_contact() {
-            document.getElementById("contactpersons").style.display = "block";
-             document.getElementById("addressform").style.display = "none";
-            document.getElementById("otherdetails").style.display = "none";
-              document.getElementById("remarks").style.display = "none";
-    }
-
-
-        function myFunction_remarks() {
-            document.getElementById("remarks").style.display = "block";
-              document.getElementById("contactpersons").style.display = "none";
-             document.getElementById("addressform").style.display = "none";
-            document.getElementById("otherdetails").style.display = "none";
-    }
-
-    </script>
-
 </body>
 
 <!-- Mirrored from radixtouch.in/hospital/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Sep 2017 11:10:30 GMT -->

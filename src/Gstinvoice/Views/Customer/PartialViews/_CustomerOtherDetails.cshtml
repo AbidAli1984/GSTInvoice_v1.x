@@ -1,4 +1,4 @@
-﻿@model GSTInvoiceData.Models.CustomerOthetDetails
+﻿@model GSTInvoiceData.Models.CustomerOtherDetail
 
 @{
     ViewBag.Title = "_CustomerOtherDetails";
@@ -9,17 +9,13 @@
             <header>Other Details</header>
         </div>
         <div class="card-body" id="bar-parent1">
-            @using (Html.BeginForm("CustomerOtherDetails", "", FormMethod.Post, new { id = "form_sample_1", @class = "form-horizontal" }))
-            {
-                @Html.ValidationSummary(true)
-
                 <div class="form-body">
                     <div class="form-group">
                         <label class="control-label col-md-3">
                             Currency
                             <span class="required"> * </span>
                         </label>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             @Html.DropDownListFor(model => model.Currency, new SelectList(new[] { "AUD-Australian Dollar", "CAD-Canadian Dollar", "INR-Indian Ruppe" }), "USD-US DOLLAR", new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Currency)
                         </div>
@@ -29,7 +25,7 @@
                             Payment Terms
                             <span class="required"> * </span>
                         </label>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             @Html.DropDownListFor(model => model.PaymentTerms, new SelectList(new[] { "Net 15", "Net 30", "Net 45", "Net 60", "Due end of the month", "Due end of next month" }), "Due Or Receipt", new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.PaymentTerms)
                         </div>
@@ -40,7 +36,7 @@
                         <label class="control-label col-md-3">
                             Enable Portal?
                         </label>
-                        <div class=" checkbox checkbox-icon-black">
+                        <div class="col-md-6" style="padding-top: 7px">
                             @Html.CheckBoxFor(model => model.IsEnablePortal)
                             @Html.Label("Allow portal access for this contact ")
                         </div>
@@ -50,7 +46,7 @@
                         <label class="control-label col-md-3">
                             Portal    Language
                         </label>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             @Html.DropDownListFor(model => model.PortalLanguage, new SelectList(new[] { "" }), "English", new { @class = "form-control" })
                         </div>
                     </div>
@@ -59,7 +55,7 @@
                         <label class="control-label col-md-3">
                             Facebook
                         </label>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="fa fa-facebook-official" aria-hidden="true"></i>
@@ -75,7 +71,7 @@
                         <label class="control-label col-md-3">
                             Tweeter
                         </label>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="fa fa-twitter-square" aria-hidden="true"></i>
@@ -86,12 +82,6 @@
                         </div>
                     </div>
                 </div>
-
-            }
         </div>
     </div>
 </div>
-
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -17,26 +17,19 @@ namespace GSTInvoiceData.Models
 
         public string Salutation { get; set; }
 
-        [Required(ErrorMessage = "First Name Required")]
-        [Display(Name = "First Name.")]
+        [Required]
         public string FirstName { get; set; }
 
-        [Required(ErrorMessage = "Last Name Required")]
-        [Display(Name = "Last Name.")]
+        [Required]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Please enter your email address")]
-        [DataType(DataType.EmailAddress)]
-        [Display(Name = "Email Id")]
-        [Remote("IsEmailExist", "User", HttpMethod = "POST", ErrorMessage = "Account already exists, Please <a class='signin' href='#'>Sign In</a>")]
+        [Required]
         public string EmailId { get; set; }
 
-        [Display(Name = "Mobile No.")]
         public string ContactNumber { get; set; }
 
-        [Required(ErrorMessage = "Please enter your password")]
-        [DataType(DataType.Password)]
-        [StringLength(50, MinimumLength = 8, ErrorMessage = "Password Should contain min 8 character's")]
+        [Required]
+        [StringLength(50, MinimumLength = 8)]
         public string Password { get; set; }
 
         //[NotMapped]
@@ -58,23 +51,6 @@ namespace GSTInvoiceData.Models
         public DateTime RequestDateTime { get; set; }
 
         public string RequestTokenNo { get; set; }
-    }
-
-    public class UserForGotPassword
-    {
-        [Required(ErrorMessage = "Please enter your email address or mobile no.")]
-        [DataType(DataType.EmailAddress)]
-        [Display(Name = "Email Id")]
-        [Remote("EmailNotExist", "User", HttpMethod = "POST", ErrorMessage = "Account does not exists, Please <a class='register' href='#'>Register</a>.")]
-        public string EmailId { get; set; }
-    }
-
-    public class UserLogin : UserForGotPassword
-    {
-        [Required(ErrorMessage = "Please enter your password")]
-        [DataType(DataType.Password)]
-        [StringLength(50, MinimumLength = 8, ErrorMessage = "Password Should contain min 8 character's")]
-        public string Password { get; set; }
     }
 
     public enum UserType

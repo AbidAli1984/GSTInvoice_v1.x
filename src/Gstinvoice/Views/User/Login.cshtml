@@ -1,4 +1,4 @@
-﻿@model GSTInvoiceData.Models.UserLogin
+﻿@model GSTInvoiceData.ViewModels.LoginViewModel
 
 @{
     ViewBag.Title = "Login";
@@ -49,14 +49,14 @@
                       <span class="errorMessage">@ViewBag.error</span>
                      <span class="successmsg">@TempData["successMsg"]</span>
                     @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "errorMessage" })
-                    @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { placeholder = "Email / Mobile No.*" } })
+                    @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { placeholder = "Email Id*" } })
 
                 </div>
                 <div>
                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "errorMessage" })
                     @Html.EditorFor(model => model.Password, new { htmlAttributes = new { placeholder = "Password*" } })
                 </div>
-                <h style="color:red">@ViewBag.Message</h>
+                <div class="errorMessage">@ViewBag.Message</div>
                 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
                 <script src="~/Scripts/jquery.validate.min.js"></script>
                 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
@@ -86,7 +86,7 @@
                 @Html.ValidationSummary(true)
             <div>
                     @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "errorMessage" })
-                    @Html.EditorFor(model => model.EmailId,new { htmlAttributes = new { placeholder = "Email / Mobile No.*" } })
+                    @Html.EditorFor(model => model.EmailId,new { htmlAttributes = new { placeholder = "Email Id*" } })
                 </div>
                 <button type="submit">Send Verification Email</button>
             }

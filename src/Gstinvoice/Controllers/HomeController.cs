@@ -14,9 +14,15 @@ namespace Gstinvoice.Controllers
             return View();
         }
 
-        
+        [HttpPost]
+        public ActionResult AddProduct()
+        {
+            return View();
+        }
 
-        
+
+
+
 
 
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using GSTInvoiceData.Models;
+using GSTInvoiceData.ViewModels;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,13 @@ namespace GSTInvoiceData.Repository
     public class UserRepository
     {
         static GSTInvoiceDBContext dbContext = new GSTInvoiceDBContext();
-        public static void RegisterUser(UserInfo userInfo, string baseUrl)
+        public static void RegisterUser(RegisterViewModel registerUser, string baseUrl)
         {
+            UserInfo userInfo = new UserInfo();
+            userInfo.EmailId = registerUser.EmailId;
+            userInfo.FirstName = registerUser.FirstName;
+            userInfo.LastName = registerUser.LastName;
+            userInfo.Password = registerUser.Password;
             userInfo.UserId = Guid.NewGuid();
             userInfo.RequestTokenNo = Guid.NewGuid().ToString().Replace("-", "");
             userInfo.UserType = 0;
@@ -49,7 +55,7 @@ namespace GSTInvoiceData.Repository
                     string linkConfirmEmail = baseUrl + "?forget_password_Token=" + currentUser.RequestTokenNo;
                     MessageBody.Append("<br/><br/><a href='" + linkConfirmEmail + "'>" + linkConfirmEmail + "</a>");
                     MessageBody.Append("<br/><br/>If you didn't request this, please ignore this email. Your password won't change until you access the link above and create a new one.");
-                    MessageBody.Append("<br/><br/>If you need any assistance, please contact us at <a href='support@sleekbill.in'>support@sleekbill.in</a>");
+                    MessageBody.Append("<br/><br/>If you need any assistance, please contact us at <a href='info@peaceinfotech.com'>info@peaceinfotech.com</a>");
                     MailModel mailToSend = new MailModel();
                     mailToSend.To = currentUser.EmailId;
                     mailToSend.Subject = "Password Reset Confirmation";
@@ -73,13 +79,13 @@ namespace GSTInvoiceData.Repository
             return dbContext.userInfo.Where(a => a.EmailId == emailId).Any();
         }
 
-        public static UserInfo GetUserByEmail(UserForGotPassword login)
+        public static UserInfo GetUserByEmail(ForGotPasswordViewModel forgotPassword)
         {
             return dbContext.userInfo
-                    .FirstOrDefault(User => User.EmailId.Equals(login.EmailId));
+                    .FirstOrDefault(User => User.EmailId.Equals(forgotPassword.EmailId));
         }
 
-        public static UserInfo GetUserByEmailOrMobile(UserLogin login)
+        public static UserInfo GetUserByEmailOrMobile(LoginViewModel login)
         {
             return dbContext.userInfo
                     .FirstOrDefault(User => (User.EmailId.Equals(login.EmailId) || User.ContactNumber.Equals(login.EmailId)) &&
