@@ -56,10 +56,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GSTInvoiceDBContext.cs" />
+<<<<<<< .mine
+    <Compile Include="Migrations\201710050741548_recreate database.cs" />
+    <Compile Include="Migrations\201710050741548_recreate database.Designer.cs">
+      <DependentUpon>201710050741548_recreate database.cs</DependentUpon>
+||||||| .r13
+    <Compile Include="Migrations\201709260514583_Added Customer Information.cs" />
+    <Compile Include="Migrations\201709260514583_Added Customer Information.Designer.cs">
+      <DependentUpon>201709260514583_Added Customer Information.cs</DependentUpon>
+=======
     <Compile Include="Migrations\201709291104425_updatedDatabase.cs" />
     <Compile Include="Migrations\201709291104425_updatedDatabase.Designer.cs">
       <DependentUpon>201709291104425_updatedDatabase.cs</DependentUpon>
+>>>>>>> .r16
     </Compile>
+<<<<<<< .mine
+    <Compile Include="Migrations\201710051145548_add country and related tables.cs" />
+    <Compile Include="Migrations\201710051145548_add country and related tables.Designer.cs">
+      <DependentUpon>201710051145548_add country and related tables.cs</DependentUpon>
+    </Compile>
+||||||| .r13
+=======
     <Compile Include="Migrations\201710051100506_AddedOtherTaxFieldsToCustomer.cs" />
     <Compile Include="Migrations\201710051100506_AddedOtherTaxFieldsToCustomer.Designer.cs">
       <DependentUpon>201710051100506_AddedOtherTaxFieldsToCustomer.cs</DependentUpon>
@@ -68,35 +85,74 @@
     <Compile Include="Migrations\201710051118553_AddedServiceTaxNoToCustomer.Designer.cs">
       <DependentUpon>201710051118553_AddedServiceTaxNoToCustomer.cs</DependentUpon>
     </Compile>
+>>>>>>> .r16
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\ChangePassword.cs" />
+<<<<<<< .mine
+    <Compile Include="Models\City.cs" />
     <Compile Include="Models\ContactPerson.cs" />
+    <Compile Include="Models\Country.cs" />
+||||||| .r13
+=======
+    <Compile Include="Models\ContactPerson.cs" />
+>>>>>>> .r16
     <Compile Include="Models\CustomerInformation.cs" />
     <Compile Include="Models\CustomerOtherDetail.cs" />
     <Compile Include="Models\MailModel.cs" />
+    <Compile Include="Models\Items.cs" />
+    <Compile Include="Models\State.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< .mine
     <Compile Include="Repository\CustomerRepository.cs" />
+    <Compile Include="Repository\ProductRepositery.cs" />
+||||||| .r13
+=======
+    <Compile Include="Repository\CustomerRepository.cs" />
+>>>>>>> .r16
     <Compile Include="Repository\UserRepository.cs" />
+<<<<<<< .mine
+    <Compile Include="ViewModels\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\ItemViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
+||||||| .r13
+=======
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
+>>>>>>> .r16
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< .mine
+    <EmbeddedResource Include="Migrations\201710050741548_recreate database.resx">
+      <DependentUpon>201710050741548_recreate database.cs</DependentUpon>
+||||||| .r13
+    <EmbeddedResource Include="Migrations\201709260514583_Added Customer Information.resx">
+      <DependentUpon>201709260514583_Added Customer Information.cs</DependentUpon>
+=======
     <EmbeddedResource Include="Migrations\201709291104425_updatedDatabase.resx">
       <DependentUpon>201709291104425_updatedDatabase.cs</DependentUpon>
+>>>>>>> .r16
     </EmbeddedResource>
+<<<<<<< .mine
+    <EmbeddedResource Include="Migrations\201710051145548_add country and related tables.resx">
+      <DependentUpon>201710051145548_add country and related tables.cs</DependentUpon>
+    </EmbeddedResource>
+||||||| .r13
+=======
     <EmbeddedResource Include="Migrations\201710051100506_AddedOtherTaxFieldsToCustomer.resx">
       <DependentUpon>201710051100506_AddedOtherTaxFieldsToCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710051118553_AddedServiceTaxNoToCustomer.resx">
       <DependentUpon>201710051118553_AddedServiceTaxNoToCustomer.cs</DependentUpon>
     </EmbeddedResource>
+>>>>>>> .r16
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
