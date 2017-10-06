@@ -38,6 +38,16 @@ namespace GSTInvoiceData.Models
 
         public string MobileNumber { get; set; }
 
+        public string TIN { get; set; }
+
+        public string VAT { get; set; }
+
+        public string PAN { get; set; }
+
+        public string GSTIN { get; set; }
+
+        public string ServiceTaxNo { get; set; }
+
         public string Website { get; set; }
 
         public string Remark { get; set; }

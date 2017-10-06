@@ -7,7 +7,7 @@
 }
 <div class="page-bar">
     <div class="page-title-breadcrumb">
-        <div class=" pull-left">
+        <div class="pull-left">
             <div class="page-title">Contacts</div>
         </div>
         <ol class="breadcrumb page-breadcrumb pull-right">
@@ -119,9 +119,17 @@
                 <tbody>
                     @foreach (CustomerDetailViewModel customerList in Model)
                     {
-                        <tr class="clickable ember-view" id="@customerList.customerId">
+                        <tr class="clickable custo-view" id="@customerList.customerId">
                             <td><input type="checkbox"></td>
-                            <td>@customerList.CompanyName</td>
+                            <td>
+                                @Ajax.ActionLink(
+                                    customerList.CompanyName,
+                                    "CustomerProfileDetail",
+                                    new { ID = customerList.customerId },
+                                    new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "pagecontent", InsertionMode = InsertionMode.Replace},
+                                    null
+                                )
+                            </td>
                             <td>@customerList.ContactName</td>
                             <td>₹ @customerList.Receivables</td>
                             <td>@customerList.City</td>
@@ -134,3 +142,5 @@
         </div>
     </div>
 </div>
+<script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/scripts/frontend.js"></script>

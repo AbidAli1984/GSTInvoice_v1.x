@@ -16,7 +16,7 @@
     <RootNamespace>Gstinvoice</RootNamespace>
     <AssemblyName>Gstinvoice</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -180,6 +180,7 @@
     <Content Include="css\plugins.min.css" />
     <Content Include="css\responsive.css" />
     <Content Include="css\style.css" />
+    <Content Include="css\StyleCustom.css" />
     <Content Include="css\theme_style.css" />
     <Content Include="css\typography.css" />
     <Content Include="fonts\fontawesome-webfont3e6e.html" />
@@ -398,16 +399,20 @@
     <Content Include="obj\Debug\Gstinvoice.csprojResolveAssemblyReference.cache" />
     <Content Include="README.md" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\angular.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
     <None Include="scripts\jquery.validate-vsdoc.js" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="scripts\jquery.validate.js" />
     <Content Include="scripts\jquery.validate.min.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
+    <Content Include="scripts\frontend.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -447,12 +452,17 @@
     <Content Include="Views\User\ResetPassword.cshtml" />
     <Content Include="Views\Shared\_MasterLayout.cshtml" />
     <Content Include="Views\Customer\AddCustomer.cshtml" />
-    <Content Include="Views\Customer\CustomerInformation.cshtml" />
+    <Content Include="Views\Customer\Contacts.cshtml" />
     <Content Include="Views\Customer\PartialViews\_Address.cshtml" />
     <Content Include="Views\Customer\PartialViews\_ContactPerson.cshtml" />
     <Content Include="Views\Customer\PartialViews\_CustomerInformation.cshtml" />
     <Content Include="Views\Customer\PartialViews\_CustomerOtherDetails.cshtml" />
     <Content Include="Views\Customer\PartialViews\_Remarks.cshtml" />
+    <Content Include="Views\Customer\EditorTemplates\contactPerson.cshtml" />
+    <Content Include="Views\User\Dashboard.cshtml" />
+    <Content Include="Views\Customer\PartialViews\_BillingAddress.cshtml" />
+    <Content Include="Views\Customer\PartialViews\_ShippingAddress.cshtml" />
+    <Content Include="Views\Shared\CustomerProfileDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -488,7 +498,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>7306</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:5469/</IISUrl>
+          <IISUrl>http://localhost/Gstinvoice</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

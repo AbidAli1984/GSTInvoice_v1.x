@@ -20,10 +20,8 @@ namespace GSTInvoiceData.Repository
                 customerDetail.customerId = customer.CustomerId;
                 customerDetail.CompanyName = customer.CompanyName;
                 customerDetail.Email = customer.ContactEmail;
-
-                ContactPerson contactPerson = customer.contactPersons.FirstOrDefault(x => x.Id > 0);
-                customerDetail.ContactName = $"{contactPerson.FirstName} {contactPerson.LastName}";
-                customerDetail.WorkPhone = contactPerson.WorkPhoneNumber;
+                customerDetail.ContactName = customer.ContactDisplayName;
+                customerDetail.WorkPhone = customer.WorkPhoneNumber;
 
                 Address address = customer.address;
                 customerDetail.City = address.BillingCity ?? address.ShippingCity;

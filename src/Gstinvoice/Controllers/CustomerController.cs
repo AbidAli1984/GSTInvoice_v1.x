@@ -46,5 +46,15 @@ namespace Gstinvoice.Controllers
             List<CustomerDetailViewModel> customers = GSTInvoiceData.Repository.CustomerRepository.GetCustomerForListing();
             return View(customers);
         }
+
+
+
+        public PartialViewResult CustomerProfileDetail(string ID)
+        {
+            Guid customerid = new Guid();
+            Guid.TryParse(ID, out customerid);
+            CustomerInformation customer = customerContext.customerInformation.FirstOrDefault(x => x.CustomerId == customerid);
+            return PartialView("CustomerProfileDetail", customer);
+        }
     }
 }
