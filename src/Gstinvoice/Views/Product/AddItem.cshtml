@@ -1,0 +1,59 @@
+﻿@model GSTInvoiceData.ViewModels.ItemViewModel
+@{
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+<html>
+<head>
+</head>
+<body>
+    <div class="page-bar">
+        <div class="page-title-breadcrumb">
+            <div class="pull-left">
+                <div class="page-title">New Contact</div>
+            </div>
+            <ol class="breadcrumb page-breadcrumb pull-right">
+                <li>
+                    <i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                    <a class="parent-item" href="#">Contact</a>&nbsp;<i class="fa fa-angle-right">    </i>
+                </li>
+            </ol>
+        </div>
+    </div>
+    @{ 
+        Html.RenderPartial("PartialViews/_AddItem",Model);
+    }
+ 
+    <script type="text/javascript">
+
+        function myFunction() {
+            $('#IsProduct').val(true);
+            document.getElementById("headid").innerHTML = "Product Details";
+            document.getElementById("Qualitylbl").style.display = "block";
+            document.getElementById("Quantity").style.display = "block";
+
+        }
+
+        function myFunction_1() {
+            $('#IsProduct').val(false);
+            document.getElementById("headid").innerHTML = "Service Details";
+            document.getElementById("Qualitylbl").style.display = "none";
+            document.getElementById("Quantity").style.display = "none";
+            }
+
+
+        
+
+    </script>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+</body>
+</html>
+
+

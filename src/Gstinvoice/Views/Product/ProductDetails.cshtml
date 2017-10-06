@@ -1,0 +1,112 @@
+﻿@model IEnumerable<GSTInvoiceData.Models.Items>
+@{
+    ViewBag.Title = "ProductDetails";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<div class="page-bar">
+    <div class="page-title-breadcrumb">
+        <div class="pull-left">
+            <div class="page-title">New Client</div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li>
+                <i class="fa fa-home"></i>&nbsp;<a class="parent-item" href='@Url.Action("Dashboard", "User")'>Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="parent-item" href="#">Contact</a>&nbsp;<i class="fa fa-angle-right">    </i>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="card card-topline-yellow">
+    <div class="card-head">
+        <!-- start language menu -->
+        <form class="search-form-opened" action="#" method="GET">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search..." name="query">
+                <span class="input-group-btn">
+                    <a href="javascript:;" class="btn submit">
+                        <i class="icon-magnifier"></i>
+                    </a>
+                </span>
+            </div>
+        </form>
+        <div class="float_header">
+            <a href='@Url.Action("AddItem", "Product")'>
+                <button style="height:31px;margin-top:10px;" class="btn btn-xs btn-success">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    New
+                </button>
+            </a>
+
+            <div class="btn-group">
+                <button class="btn btn-sm btn-Secondary dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false">
+                    <i style="font-size:1.5em;" class="fa fa-bars" aria-hidden="true"></i>
+                </button>
+                <ul class="dropdown-menu" style="right:0; left:auto;" role="menu">
+                    <li>
+                        <a href="javascript:;"> </a>
+                    </li>
+                    <li>
+                        <a href="clients.html">Name</a>
+                    </li>
+                    <li>
+                        <a href="clients.html">Company Name</a>
+                    </li>
+                    <li>
+                        <a href="clients.html">Recievables</a>
+                    </li>
+                    <li>
+                        <a href="clients.html">Unused Credits </a>
+                    </li>
+                    <li>
+                        <a href="clients.html">Created Time</a>
+                    </li>
+                    <li>
+                        <a href="clients.html">Last Modified Time</a>
+                    </li>
+                    <li class="divider"> </li>
+                    <li>
+                        <a href="import_contacts.html">
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                            Import Contacts
+                        </a>
+                        <a href="import_contact_persons.html">
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                            Import Contact Persons
+                        </a>
+                    </li>
+                    <li class="divider"> </li>
+                    <li>
+                        <a data-toggle="modal" data-target="#export_contacts">
+                            <i class="fa fa-upload" aria-hidden="true"></i>
+                            Export Contacts
+                        </a>
+                        <a data-toggle="modal" data-target="#export_contact_persons">
+                            <i class="fa fa-upload" aria-hidden="true"></i>
+                            Export Contact Persons
+                        </a>
+                    </li>
+                    <li class="divider"> </li>
+                    <li>
+                        <a href="clients.html">
+                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                            Refresh List
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card-body ">
+        <div class="table-scrollable">
+    @{ 
+        Html.RenderPartial("PartialViews/_ProductList",Model);
+    }
+        </div>
+    </div>
+</div>
+
+
+
