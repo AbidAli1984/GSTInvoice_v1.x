@@ -16,5 +16,7 @@ namespace GSTInvoiceData
 
         public DbSet<City> city { get; set; }
 
+        public DbSet<Items> items { get; set; }
+
     }
 }

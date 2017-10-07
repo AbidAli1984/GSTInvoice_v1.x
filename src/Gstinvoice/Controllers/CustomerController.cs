@@ -54,7 +54,7 @@ namespace Gstinvoice.Controllers
             Guid customerid = new Guid();
             Guid.TryParse(ID, out customerid);
             CustomerInformation customer = customerContext.customerInformation.FirstOrDefault(x => x.CustomerId == customerid);
-            return PartialView("CustomerProfileDetail", customer);
+            return PartialView("PartialViews/CustomerProfileDetail", customer);
         }
     }
 }

@@ -49,7 +49,10 @@ namespace GSTInvoiceData.Repository
             {
                 items = new Items();
                 items.ItemId = Guid.NewGuid();
+                dbContext.items.Add(items);
             }
+            else
+                dbContext.Entry(items).State = EntityState.Modified;
 
             items.IsProduct = item.IsProduct;
             items.Name = item.Name;
@@ -60,11 +63,6 @@ namespace GSTInvoiceData.Repository
             items.HSNorSAC = item.HSNorSAC;
             items.UnitPrice = item.UnitPrice;
             items.Currency = item.Currency;
-
-            if (items == null)
-                dbContext.items.Add(items);
-            else
-                dbContext.Entry(items).State = EntityState.Modified;
             dbContext.SaveChanges();
         }
     }

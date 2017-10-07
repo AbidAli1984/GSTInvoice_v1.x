@@ -22,18 +22,19 @@ namespace Gstinvoice.Controllers
 
         public ActionResult AddItem()
         {
-            return View();      
-          }
+            ItemViewModel item = new ItemViewModel();
+            return View(item);
+        }
 
         [HttpPost]
         public ActionResult AddItem(ItemViewModel item)
         {
             if (ModelState.IsValid)
             {
-             
+
                 GSTInvoiceData.Repository.ProductRepositery.AddProduct(item);
-                return RedirectToAction("ProductInformation", "Product");
-               
+                return RedirectToAction("ProductDetails", "Product");
+
             }
             var errors = ModelState.Values.SelectMany(v => v.Errors);
             return View(item);
@@ -47,7 +48,7 @@ namespace Gstinvoice.Controllers
 
         public ActionResult ProductList()
         {
-          List<Items> item= GSTInvoiceData.Repository.ProductRepositery.GetAllItems();
+            List<Items> item = GSTInvoiceData.Repository.ProductRepositery.GetAllItems();
             return View(item);
         }
 

@@ -412,32 +412,10 @@
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
-<<<<<<< .mine
-    <Content Include="web.config" />
-    <Content Include="Views\Product\DeleteProduct.cshtml" />
-    <Content Include="Views\Product\EditProduct.cshtml" />
-    <Content Include="Views\Product\PartialViews\_AddItem.cshtml" />
-    <Content Include="Views\Customer\PartialViews\_BillingAddress.cshtml" />
-    <Content Include="Views\Customer\PartialViews\_ShippingAddress.cshtml" />
-    <Content Include="Views\Customer\EditorTemplates\contactPerson.cshtml" />
-    <Content Include="Views\Customer\Contacts.cshtml" />
-    <Content Include="Views\Product\PartialViews\_ProductList.cshtml" />
-    <None Include="web.Debug.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
-    <None Include="web.Release.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
-||||||| .r13
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-=======
     <Content Include="scripts\frontend.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
->>>>>>> .r16
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -454,6 +432,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -463,6 +442,12 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\PartialViews\_Register.cshtml" />
+    <Content Include="Views\User\AfterLogin.cshtml" />
+    <Content Include="Views\PartialViews\_Address.cshtml" />
+    <Content Include="Views\PartialViews\_ContactPerson.cshtml" />
+    <Content Include="Views\PartialViews\_CustomerInformation.cshtml" />
+    <Content Include="Views\PartialViews\_CustomerOtherDetails.cshtml" />
+    <Content Include="Views\PartialViews\_Remarks.cshtml" />
     <Content Include="Views\User\RegisterConfirmation.cshtml" />
     <Content Include="Views\User\ChangePassword.cshtml" />
     <Content Include="Views\User\ResetPassword.cshtml" />
@@ -474,30 +459,23 @@
     <Content Include="Views\Customer\PartialViews\_CustomerInformation.cshtml" />
     <Content Include="Views\Customer\PartialViews\_CustomerOtherDetails.cshtml" />
     <Content Include="Views\Customer\PartialViews\_Remarks.cshtml" />
-<<<<<<< .mine
-    <Content Include="Views\User\Dashboard.cshtml" />
-    <Content Include="Views\Product\ProductDetails.cshtml" />
-    <Content Include="Views\Product\AddItem.cshtml" />
-||||||| .r13
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-=======
     <Content Include="Views\Customer\EditorTemplates\contactPerson.cshtml" />
     <Content Include="Views\User\Dashboard.cshtml" />
     <Content Include="Views\Customer\PartialViews\_BillingAddress.cshtml" />
     <Content Include="Views\Customer\PartialViews\_ShippingAddress.cshtml" />
-    <Content Include="Views\Shared\CustomerProfileDetail.cshtml" />
+    <Content Include="Views\Customer\PartialViews\CustomerProfileDetail.cshtml" />
+    <Content Include="Views\Product\AddItem.cshtml" />
+    <Content Include="Views\Product\DeleteProduct.cshtml" />
+    <Content Include="Views\Product\EditProduct.cshtml" />
+    <Content Include="Views\Product\PartialViews\_AddItem.cshtml" />
+    <Content Include="Views\Product\PartialViews\_ProductList.cshtml" />
+    <Content Include="Views\Product\ProductDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
->>>>>>> .r16
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -523,7 +501,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>7306</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

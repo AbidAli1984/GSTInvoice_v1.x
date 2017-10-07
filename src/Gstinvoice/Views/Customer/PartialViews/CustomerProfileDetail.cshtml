@@ -1,0 +1,271 @@
+﻿@using GSTInvoiceData.Models
+@model CustomerInformation
+    @{ 
+        ViewBag.Title = "_CustomerInformation";
+    }
+<div class="page-bar">
+    <div class="page-title-breadcrumb">
+        <div class=" pull-left">
+            <div class="page-title">Profile Details</div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li>
+                <i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="parent-item" href="contact_info.html">Contact</a>&nbsp;<i class="fa fa-angle-right"></i>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN PROFILE SIDEBAR -->
+        <div style="width:250px;" class="profile-sidebar">
+            <div class="card">
+                <div class="card-head card-topline-aqua">
+                    <div class="float_header">
+                        <a href="contacts.html">
+                            <button style="height:31px;margin-top:10px;" class="btn btn-xs btn-success">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                New
+                            </button>
+                        </a>
+                        <div class="btn-group">
+                            <button class="btn btn-sm btn-Secondary dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false">
+                                <i style="font-size:1.5em;" class="fa fa-bars" aria-hidden="true"></i>
+                            </button>
+                            <ul class="dropdown-menu" style="right:0; left:auto;" role="menu">
+                                <li>
+                                    <a href="javascript:;"> </a>
+                                </li>
+                                <li>
+                                    <a href="clients.html">Name</a>
+                                </li>
+                                <li>
+                                    <a href="clients.html">Company Name</a>
+                                </li>
+                                <li>
+                                    <a href="clients.html">Recievables</a>
+                                </li>
+                                <li>
+                                    <a href="clients.html">Unused Credits </a>
+                                </li>
+                                <li>
+                                    <a href="clients.html">Created Time</a>
+                                </li>
+                                <li>
+                                    <a href="clients.html">Last Modified Time</a>
+                                </li>
+                                <li class="divider"> </li>
+                                <li>
+                                    <a href="import_contacts.html">
+                                        <i class="fa fa-download" aria-hidden="true"></i>
+                                        Import Contacts
+                                    </a>
+                                    <a href="import_contact_persons.html">
+                                        <i class="fa fa-download" aria-hidden="true"></i>
+                                        Import Contact Persons
+                                    </a>
+                                </li>
+                                <li class="divider"> </li>
+                                <li>
+                                    <a data-toggle="modal" data-target="#export_contacts">
+                                        <i class="fa fa-upload" aria-hidden="true"></i>
+                                        Export Contacts
+                                    </a>
+                                    <a data-toggle="modal" data-target="#export_contact_persons">
+                                        <i class="fa fa-upload" aria-hidden="true"></i>
+                                        Export Contact Persons
+                                    </a>
+                                </li>
+                                <li class="divider"> </li>
+                                <li>
+                                    <a href="clients.html">
+                                        <i class="fa fa-refresh" aria-hidden="true"></i>
+                                        Refresh List
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--
+                                                            <div class="btn_style_grp">
+                                                            <a href="contacts.html"><button class="btn btn-xs btn-success"><i class="fa fa-plus" aria-hidden="true"></i>
+                                                                </button></a>
+                                                            <button class="btn btn-xs btn-default"><i class="fa fa-bars" aria-hidden="true"></i>
+                                                            </button>
+                                                            </div>
+                    -->
+                </div>
+                <div class="card-body no-padding height-9">
+                    <div class="row text-left m-t-10">
+                        <div class="col-md-12">
+                            <input type="checkbox"> <a href="contact_info.html"> Bill Smith</a><br>  $0.00
+                        </div>
+                    </div><hr class="hr_style">
+                    <div class="row text-left m-t-10">
+                        <div class="col-md-12">
+                            <input type="checkbox"> <a href="contact_info.html"> Bill Smith</a><br> $0.00
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END BEGIN PROFILE SIDEBAR -->
+        <!-- BEGIN PROFILE CONTENT -->
+        <div class="profile-content">
+            <div class="row">
+                <div class="card">
+                    <div class="card-head card-topline-aqua">
+                        <header>@Model.ContactDisplayName</header>
+                        <div class="float_header">
+                            <a href="contacts.html">
+                                <button style="height:31px;margin-top:10px;" class="btn btn-xs btn-default">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+
+                                    Edit
+                                </button>
+                            </a>
+                            <a href="#"><button style="height:31px;margin-top:10px;" class="btn btn-xs btn-default"> Remove</button></a>
+                        </div>
+                    </div>
+                    <div class="card-body no-padding height-9">
+                        <div class="container-fluid">
+                            <div class="row">
+                                @if (!string.IsNullOrWhiteSpace(@Model.CompanyName))
+                                {
+                                    <h4 class="heading_style">
+                                        <i class="fa fa-building-o" aria-hidden="true"></i>
+                                        @Model.CompanyName
+                                    </h4>
+                                    <hr class="hr_style">
+                                }
+                                @if (!string.IsNullOrWhiteSpace(@Model.TIN))
+                                { <h5 class="para_style text-muted">TIN: @Model.TIN</h5> }
+
+                                @if (!string.IsNullOrWhiteSpace(@Model.VAT))
+                                { <h5 class="para_style text-muted">VAT: @Model.VAT</h5> }
+
+                                @if (!string.IsNullOrWhiteSpace(@Model.PAN))
+                                { <h5 class="para_style text-muted"> PAN: @Model.PAN</h5> }
+
+                                @if (!string.IsNullOrWhiteSpace(@Model.ServiceTaxNo))
+                                { <h5 class="para_style text-muted">Service Tax No: ServiceTaxNo</h5> }
+
+                                @if (!string.IsNullOrWhiteSpace(@Model.ContactEmail))
+                                {
+                                    <h5 class="para_style text-muted">
+                                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                        @Model.ContactEmail
+                                    </h5>
+                                }
+
+                                @if (!string.IsNullOrWhiteSpace(@Model.WorkPhoneNumber))
+                                {
+                                    <h5 class="para_style text-muted">
+                                        <i class="fa fa-phone" aria-hidden="true"></i>
+                                        @Model.WorkPhoneNumber
+                                    </h5>
+                                }
+                            </div>
+
+                            <br>
+                            @if (Model.contactPersons.Count > 1)
+                            {
+                                <div class="row">
+                                    <h4 class="heading_style">Contact Persons</h4>
+                                    <hr class="hr_style">
+                                    @foreach (ContactPerson contacts in Model.contactPersons)
+                                    {
+                                        if (!string.IsNullOrEmpty(@contacts.FirstName) || !string.IsNullOrEmpty(@contacts.LastName))
+                                        { <h5 class="para_style text-muted"><strong>@contacts.FirstName @contacts.LastName</strong></h5> }
+
+                                        if (!string.IsNullOrEmpty(@contacts.EmailAddress))
+                                        { <h5 class="para_style text-muted">  <i class="fa fa-envelope-o" aria-hidden="true"></i> @contacts.EmailAddress</h5> }
+
+                                        if (!string.IsNullOrEmpty(@contacts.MobileNumber))
+                                        {<h5 class="para_style text-muted">  <i class="fa fa-phone" aria-hidden="true"></i> @contacts.MobileNumber</h5>}
+                                    }
+                                </div>
+                                <br>
+                            }
+
+                            @if (Model.address != null)
+                            {
+                                <div class="row">
+                                    <h4 class="heading_style">Address</h4>
+                                    <hr class="hr_style">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <h5 class="para_style text-muted">
+                                                    <i class="fa fa-address-card-o" aria-hidden="true"></i>
+                                                    <strong> BILLING ADDRESS</strong>
+                                                </h5>
+                                                <div class="para_style_1 text-muted" style="width: 76px;float: left;">
+                                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                </div>
+                                                <div class="text-muted" style="width:200px; float:left">
+                                                    @Model.address.BillingBuilding
+                                                    @Model.address.BillingAddress
+                                                    @Model.address.BillingCity, @Model.address.BillingState @Model.address.BillingPinCode
+                                                    @Model.address.BillingCountry
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h5 class="para_style text-muted">
+                                                    <i class="fa fa-address-card-o" aria-hidden="true"></i>
+                                                    <strong> SHIPPING ADDRESS</strong>
+                                                </h5>
+                                                <div class="para_style_1 text-muted" style="width: 76px;float: left;">
+                                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                </div>
+                                                <div class="text-muted" style="width:200px; float:left">
+                                                    @Model.address.ShippingBuilding
+                                                    @Model.address.ShippingAddress
+                                                    @Model.address.ShippingCity, @Model.address.ShippingState @Model.address.ShippingPinCode
+                                                    @Model.address.ShippingCountry
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <br>
+                            }
+
+                            <div class="row">
+                                <h4 class="heading_style">Other Info</h4>
+                                <hr class="hr_style">
+                                @if (!string.IsNullOrWhiteSpace(Model.customerOtherDetail.Currency))
+                                { <h5 class="para_style text-muted">Currency:&nbsp;&nbsp;&nbsp;  @Model.customerOtherDetail.Currency</h5> }
+
+                                @if (!string.IsNullOrWhiteSpace(Model.customerOtherDetail.PaymentTerms))
+                                { <h5 class="para_style text-muted">Payment Terms:&nbsp;&nbsp;&nbsp;  @Model.customerOtherDetail.PaymentTerms</h5> }
+
+                                @if (!string.IsNullOrWhiteSpace(Model.customerOtherDetail.Facebook))
+                                {<h5 class="para_style text-muted">Facebook:&nbsp;&nbsp;&nbsp;  <a>@Model.customerOtherDetail.Facebook</a></h5>                                }
+
+                                @if (!string.IsNullOrWhiteSpace(Model.customerOtherDetail.tweeter))
+                                {<h5 class="para_style text-muted">Tweeter:&nbsp;&nbsp;&nbsp;  <a>@Model.customerOtherDetail.tweeter</a></h5>}
+                            </div>
+                            <br>
+
+                            @if (!string.IsNullOrWhiteSpace(Model.Remark))
+                            {
+                                <div class="row">
+                                    <h4 class="heading_style">Remarks</h4>
+                                    <hr class="hr_style">
+                                    <h5 class="para_style text-muted">@Model.Remark</h5>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END PROFILE CONTENT -->
+        </div>
+    </div>
+</div>
