@@ -11,6 +11,21 @@ namespace GSTInvoiceData.Repository
     {
         static GSTInvoiceDBContext dbContext = new GSTInvoiceDBContext();
 
+        public static CustomerInformation GetBlankCustomer()
+        {
+            CustomerInformation customerInformation = new CustomerInformation();
+            customerInformation.customerOtherDetail = null;
+            customerInformation.address = null;
+
+            List<ContactPerson> contactPerson = new List<ContactPerson>();
+            contactPerson.Add(new ContactPerson()
+            {
+                Salutation = "Salutation",
+            });
+            customerInformation.contactPersons = contactPerson;
+            return customerInformation;
+        }
+
         public static List<CustomerDetailViewModel> GetCustomerForListing()
         {
             List<CustomerDetailViewModel> customers = new List<CustomerDetailViewModel>();
@@ -34,7 +49,7 @@ namespace GSTInvoiceData.Repository
 
         public static void AddorUpdateCustomer(CustomerInformation customerInformation)
         {
-            if (dbContext.customerInformation.Any(user => user.Id == customerInformation.Id))
+            if (dbContext.customerInformation.Any(user => user.CustomerId == customerInformation.CustomerId))
             {
                 dbContext.Entry(customerInformation).State = EntityState.Modified;
             }
@@ -66,16 +81,16 @@ namespace GSTInvoiceData.Repository
             AddorUpdateCustomer(customerInformation);
         }
 
-        public static CustomerInformation GetCustomerById(Guid Id)
+        public static CustomerInformation GetCustomerByCustomerId(Guid Id)
         {
-            CustomerInformation customerInformation = dbContext.customerInformation.SingleOrDefault(x => x.CustomerId ==Id);
+            CustomerInformation customerInformation = dbContext.customerInformation.SingleOrDefault(x => x.CustomerId == Id);
             return customerInformation;
         }
 
-        public static void Delete(CustomerInformation customerInformation)
+        public static void DeleteCustomerByCustomerId(Guid customerId)
         {
 
-             CustomerInformation custometToDelete = dbContext.customerInformation.Find(customerInformation.CustomerId);
+             CustomerInformation custometToDelete = dbContext.customerInformation.Find(customerId);
             dbContext.customerInformation.Remove(custometToDelete);
             dbContext.SaveChanges();
         }

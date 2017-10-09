@@ -25,7 +25,7 @@ namespace Gstinvoice.Controllers
         
         public ActionResult AddCustomer()
         {
-            CustomerInformation customerInformation = new CustomerInformation();
+            CustomerInformation customerInformation = GSTInvoiceData.Repository.CustomerRepository.GetBlankCustomer();
             return View(customerInformation);
         }
 
@@ -54,6 +54,7 @@ namespace Gstinvoice.Controllers
             Guid customerid = new Guid();
             Guid.TryParse(ID, out customerid);
             CustomerInformation customer = customerContext.customerInformation.FirstOrDefault(x => x.CustomerId == customerid);
+            customer.customerOtherDetail = customerContext.customerOtherdetail.FirstOrDefault(x => x.CustomerId == customerid);
             return PartialView("PartialViews/CustomerProfileDetail", customer);
         }
 
@@ -63,32 +64,33 @@ namespace Gstinvoice.Controllers
             return PartialView("PartialViews/CustomerProfileList", customers);
         }
 
-        public ActionResult EditCustomer(int id)
+        public ActionResult EditCustomer(Guid customerId)
         {
-          CustomerInformation customerInformation =GSTInvoiceData.Repository.CustomerRepository.GetCustomerById(id);
+            CustomerInformation customerInformation = GSTInvoiceData.Repository.CustomerRepository.GetCustomerByCustomerId(customerId);
             return View(customerInformation);
-         
-        }
 
-        public ActionResult DeleteCustomer(Guid id)
-        {
-            CustomerInformation customerInformation = GSTInvoiceData.Repository.CustomerRepository.GetCustomerById(id);
-            return View(customerInformation);
-        }
-
-        [HttpPost]
-        public ActionResult DeleteCustomer(CustomerInformation customerInformation)
-        {
-            GSTInvoiceData.Repository.CustomerRepository.Delete(customerInformation);
-            return RedirectToAction("");
         }
 
         [HttpPost]
         public ActionResult EditCustomer(CustomerInformation customerInformation)
         {
             GSTInvoiceData.Repository.CustomerRepository.Edit(customerInformation);
-            return RedirectToAction("");
-           
+            return RedirectToAction("Contacts");
+
         }
+
+        public ActionResult DeleteCustomer()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DeleteCustomer(Guid customerId)
+        {
+            GSTInvoiceData.Repository.CustomerRepository.DeleteCustomerByCustomerId(customerId);
+            return RedirectToAction("");
+        }
+
+       
     }
 }

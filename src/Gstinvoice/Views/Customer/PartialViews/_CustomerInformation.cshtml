@@ -5,126 +5,260 @@
     ViewBag.Title = "_CustomerInformation";
 }
 
-<html>
-<head>
-</head>
-<body>
-    <style type="text/css">
-        .field-validation-error {
-            color: red;
-        }
-    </style>
-    <div class="form-body">
-        <div class="form-group">
-            <label class="control-label col-md-3">
-                Primary Contact
-            </label>
-            <div class="col-md-2">
-                @Html.DropDownListFor(model => model.Salutation, new SelectList(new[] { "Mr.", "Mrs.", "Ms.", "Miss.", "Dr." }), "Salutation", new { @class = "form-control" })
-            </div>
-            <div class="col-md-2">
-                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { placeholder = "First Name", @class = "form-control", onblur = "AddContactDisplayName()" } })
-            </div>
-            <div class="col-md-2">
-                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { placeholder = "Last Name", @class = "form-control", onblur = "AddContactDisplayName()" } })
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-3">
-                Company Name
-                <span class="required"> * </span>
-            </label>
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control", onblur = "AddContactDisplayName()" } })
-                @Html.ValidationMessageFor(model => model.CompanyName)
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-3">
-                Contact Display Name
-                <span class="required"> * </span>
-            </label>
-            <div class="col-md-6">
-                @Html.DropDownListFor(model => model.ContactDisplayName, new SelectList(new[] { "Mr.smith ", "Mr. smith" }), "", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ContactDisplayName)
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-3">
-                Contact Email
-            </label>
-            <div class="col-md-6">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="fa fa-envelope"></i>
-                    </span>
-                    @Html.EditorFor(model => model.ContactEmail, new { htmlAttributes = new { placeholder = "Email Address", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ContactEmail)
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-3">
-                Contact Phone
-            </label>
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.WorkPhoneNumber, new { htmlAttributes = new { placeholder = "Work Phone", @class = "form-control" } })
-            </div>
-            <div class="col-md-3">
+<style type="text/css">
+    .field-validation-error {
+        color: red;
+    }
+</style>
 
-                @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { placeholder = "Mobile Phone", @class = "form-control" } })
-            </div>
+<div class="form-body">
+    <div class="form-group">
+        <label class="control-label col-md-3">
+            Primary Contact
+        </label>
+        <div class="col-md-2">
+            @Html.HiddenFor(model => model.CustomerId)
+            @Html.DropDownListFor(model => model.Salutation, new SelectList(new[] { "Mr.", "Mrs.", "Ms.", "Miss.", "Dr." }), "Salutation", new { @class = "form-control" })
         </div>
-        <div class="form-group">
-            <label class="control-label col-md-3">
-                Website
-            </label>
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.Website, new { htmlAttributes = new { @class = "form-control" } })
-                <span class="help-block"> e.g: http://www.demo.com or http://demo.com </span>
-            </div>
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { placeholder = "First Name", @class = "form-control", onblur = "AddContactDisplayName()" } })
         </div>
-        <div class="form-group">
-            <label class="control-label col-md-3">
-                TIN
-            </label>
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.TIN, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { placeholder = "Last Name", @class = "form-control", onblur = "AddContactDisplayName()" } })
         </div>
-        <div class="form-group">
-            <label class="control-label col-md-3">
-                VAT
-            </label>
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.VAT, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3">
+            Company Name
+            <span class="required"> * </span>
+        </label>
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control", onblur = "AddContactDisplayName()" } })
+            @Html.ValidationMessageFor(model => model.CompanyName)
         </div>
-        <div class="form-group">
-            <label class="control-label col-md-3">
-                PAN
-            </label>
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.PAN, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3">
+            Contact Display Name
+            <span class="required"> * </span>
+        </label>
+        <div class="col-md-6">
+            @Html.DropDownListFor(model => model.ContactDisplayName, new SelectList(new[] { "Mr.smith " }), "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ContactDisplayName)
         </div>
-        <div class="form-group">
-            <label class="control-label col-md-3">
-                GSTIN
-            </label>
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.GSTIN, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-3">
-                Service Tax No.
-            </label>
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.ServiceTaxNo, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3">
+            Contact Email
+        </label>
+        <div class="col-md-6">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-envelope"></i>
+                </span>
+                @Html.EditorFor(model => model.ContactEmail, new { htmlAttributes = new { placeholder = "Email Address", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ContactEmail)
             </div>
         </div>
     </div>
-</body>
-</html>
+    <div class="form-group">
+        <label class="control-label col-md-3">
+            Contact Phone
+        </label>
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.WorkPhoneNumber, new { htmlAttributes = new { placeholder = "Work Phone", @class = "form-control" } })
+        </div>
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { placeholder = "Mobile Phone", @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3">
+            Website
+        </label>
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.Website, new { htmlAttributes = new { @class = "form-control" } })
+            <span class="help-block"> e.g: http://www.demo.com or http://demo.com </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3">
+            TIN
+        </label>
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.TIN, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3">
+            VAT
+        </label>
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.VAT, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3">
+            PAN
+        </label>
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.PAN, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3">
+            GSTIN
+        </label>
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.GSTIN, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3">
+            Service Tax No.
+        </label>
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.ServiceTaxNo, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-md-2" onclick="SwitchForm('otherdetails')">
+                <div class="panel">
+                    <div class="panel-body"><a>Other Details</a></div>
+                </div>
+            </div>
+            <div class="col-md-2" onclick="SwitchForm('addressform')">
+                <div class="panel">
+                    <div class="panel-body"><a>Address</a></div>
+                </div>
+            </div>
+            <div class="col-md-2" onclick="SwitchForm('contactpersons')">
+                <div class="panel">
+                    <div class="panel-body"><a>Contact Persons</a></div>
+                </div>
+            </div>
+            <div class="col-md-2" onclick="SwitchForm('remarks')">
+                <div class="panel">
+                    <div class="panel-body"><a>Remarks</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="row divInformation" style="display:block" id="otherdetails">
+    @Html.Partial("PartialViews/_CustomerOtherDetails", Model.customerOtherDetail,
+                                        new ViewDataDictionary
+                                        {
+                                            TemplateInfo = new System.Web.Mvc.TemplateInfo
+                                            {
+                                                HtmlFieldPrefix = "customerOtherDetail"
+                                            }
+                                        });
+</div>
+
+<div class="row divInformation" style="display:none" id="addressform">
+    @{
+        Html.RenderPartial("PartialViews/_Address", Model.address,
+                new ViewDataDictionary
+                {
+                    TemplateInfo = new System.Web.Mvc.TemplateInfo
+                    {
+                        HtmlFieldPrefix = "address"
+                    }
+                });
+    }
+</div>
+
+<div class="row divInformation" style="display:none" id="contactpersons">
+    @{
+        Html.RenderPartial("PartialViews/_ContactPerson", Model.contactPersons,
+                new ViewDataDictionary
+                {
+                    TemplateInfo = new System.Web.Mvc.TemplateInfo
+                    {
+                        HtmlFieldPrefix = "contactPersons"
+                    }
+                });
+    }
+</div>
+
+<div class="row divInformation" style="display:none" id="remarks">
+    @{
+        Html.RenderPartial("PartialViews/_Remarks", Model);
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-offset-3 col-md-9">
+        <button type="submit" class="btn btn-primary">Save</button>
+        @Html.ActionLink("Cancle", "Contacts", null, new { @class= "btn btn-default" })
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script type="text/javascript">
+        function AddContactDisplayName() {
+            debugger;
+            var option = '<option></option>';
+            var firstName = $('#FirstName').val();
+            var lastName = $('#LastName').val();
+            var companyName = $('#CompanyName').val();
+            if (firstName)
+                option = option + '<option>' + firstName + '</option>';
+            if (lastName)
+                option = option + '<option>' + lastName + '</option>';
+            if (firstName && lastName)
+                option = option + '<option>' + firstName + ' ' + lastName + '</option><option>' + lastName + ' ' + firstName + '</option>';
+            if (companyName)
+                option = option + '<option>' + companyName + '</option>';
+            $('#ContactDisplayName').html(option);
+        }
+
+        function Copy() {
+            $('#address_ShippingBuilding').val($('#address_BillingBuilding').val())
+            $('#address_ShippingAddress').val($('#address_BillingAddress').val())
+            $('#address_ShippingCity').val($('#address_BillingCity').val())
+            $('#address_ShippingState').val($('#address_BillingState').val())
+            $('#address_ShippingPinCode').val($('#address_BillingPinCode').val())
+            $('#address_ShippingCountry').val($('#address_BillingCountry').val())
+            $('#address_ShippingFax').val($('#address_BillingFax').val())
+        }
+
+        function SwitchForm(formName) {
+            $('.divInformation').hide();
+            $('#' + formName).show();
+        }
+
+        $(document).ready(function () {
+            AddContactDisplayName();
+            debugger;
+            $('#addNewContact').click(function () {
+                debugger;
+                var count = $("tr.contacts-record").length;
+                var template = $('#contactListTableBody tr:first').clone();
+                template.find('input[type=text]').val(null);
+                $.each(template.find('input[type=text]'), function () {
+                    var name = $(this).attr('name');
+                    name = name.replace('0', count);
+                    var id = $(this).attr('id');
+                    id = id.replace('0', count);
+                    $(this).attr({ 'name': name, 'id': id });
+                });
+                var select = template.find('select');
+                var name = select.attr('name');
+                name = name.replace('0', count);
+                var id = select.attr('id');
+                id = id.replace('0', count);
+                template.find('select').attr({ 'name': name, 'id': id })
+                template.removeClass('contacts-record-template');
+                $('.list-Contacts').append(template);
+            })
+        })
+</script>

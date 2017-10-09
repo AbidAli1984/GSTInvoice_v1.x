@@ -114,14 +114,15 @@
                     <div class="card-head card-topline-aqua">
                         <header>@Model.ContactDisplayName</header>
                         <div class="float_header">
-                            <a href='@Url.Action("EditCustomer", "Customer")'>
+                            @Html.HiddenFor(model => model.CustomerId);
+                            <a href='@Url.Action("EditCustomer", "Customer", new { customerId = Model.CustomerId })'>
                                 <button style="height:31px;margin-top:10px;" class="btn btn-xs btn-default">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
 
                                     Edit
                                 </button>
                             </a>
-                            <a href='@Url.Action("DeleteCustomer", "Customer")'><button style="height:31px;margin-top:10px;" class="btn btn-xs btn-default"> Remove</button></a>
+                            <a href='@Url.Action("DeleteCustomer", "Customer", new { customerId = Model.CustomerId, onclick="return confirm('Are you sure?');" })'><button style="height:31px;margin-top:10px;" class="btn btn-xs btn-default"> Remove</button></a>
                         </div>
                     </div>
                     <div class="card-body no-padding height-9">
