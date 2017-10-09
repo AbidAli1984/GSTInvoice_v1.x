@@ -56,5 +56,39 @@ namespace Gstinvoice.Controllers
             CustomerInformation customer = customerContext.customerInformation.FirstOrDefault(x => x.CustomerId == customerid);
             return PartialView("PartialViews/CustomerProfileDetail", customer);
         }
+
+        public ActionResult CustomerProfileList()
+        {
+            List<CustomerDetailViewModel> customers = GSTInvoiceData.Repository.CustomerRepository.GetCustomerForListing();
+            return PartialView("PartialViews/CustomerProfileList", customers);
+        }
+
+        public ActionResult EditCustomer(int id)
+        {
+          CustomerInformation customerInformation =GSTInvoiceData.Repository.CustomerRepository.GetCustomerById(id);
+            return View(customerInformation);
+         
+        }
+
+        public ActionResult DeleteCustomer(Guid id)
+        {
+            CustomerInformation customerInformation = GSTInvoiceData.Repository.CustomerRepository.GetCustomerById(id);
+            return View(customerInformation);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteCustomer(CustomerInformation customerInformation)
+        {
+            GSTInvoiceData.Repository.CustomerRepository.Delete(customerInformation);
+            return RedirectToAction("");
+        }
+
+        [HttpPost]
+        public ActionResult EditCustomer(CustomerInformation customerInformation)
+        {
+            GSTInvoiceData.Repository.CustomerRepository.Edit(customerInformation);
+            return RedirectToAction("");
+           
+        }
     }
 }

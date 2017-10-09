@@ -60,5 +60,24 @@ namespace GSTInvoiceData.Repository
             }
             dbContext.SaveChanges();
         }
+
+        public static void Edit(CustomerInformation customerInformation)
+        {
+            AddorUpdateCustomer(customerInformation);
+        }
+
+        public static CustomerInformation GetCustomerById(Guid Id)
+        {
+            CustomerInformation customerInformation = dbContext.customerInformation.SingleOrDefault(x => x.CustomerId ==Id);
+            return customerInformation;
+        }
+
+        public static void Delete(CustomerInformation customerInformation)
+        {
+
+             CustomerInformation custometToDelete = dbContext.customerInformation.Find(customerInformation.CustomerId);
+            dbContext.customerInformation.Remove(custometToDelete);
+            dbContext.SaveChanges();
+        }
     }
 }

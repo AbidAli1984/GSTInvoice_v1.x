@@ -1,4 +1,5 @@
-﻿@using GSTInvoiceData.Models
+﻿
+@using GSTInvoiceData.Models
 @model CustomerInformation
     @{ 
         ViewBag.Title = "_CustomerInformation";
@@ -25,7 +26,7 @@
             <div class="card">
                 <div class="card-head card-topline-aqua">
                     <div class="float_header">
-                        <a href="contacts.html">
+                        <a href='@Url.Action("AddCustomer", "Customer")'>
                             <button style="height:31px;margin-top:10px;" class="btn btn-xs btn-success">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                 New
@@ -99,16 +100,9 @@
                     -->
                 </div>
                 <div class="card-body no-padding height-9">
-                    <div class="row text-left m-t-10">
-                        <div class="col-md-12">
-                            <input type="checkbox"> <a href="contact_info.html"> Bill Smith</a><br>  $0.00
-                        </div>
-                    </div><hr class="hr_style">
-                    <div class="row text-left m-t-10">
-                        <div class="col-md-12">
-                            <input type="checkbox"> <a href="contact_info.html"> Bill Smith</a><br> $0.00
-                        </div>
-                    </div>
+          @{ 
+              Html.RenderAction("CustomerProfileList", "Customer");
+          }
                 </div>
             </div>
         </div>
@@ -120,14 +114,14 @@
                     <div class="card-head card-topline-aqua">
                         <header>@Model.ContactDisplayName</header>
                         <div class="float_header">
-                            <a href="contacts.html">
+                            <a href='@Url.Action("EditCustomer", "Customer")'>
                                 <button style="height:31px;margin-top:10px;" class="btn btn-xs btn-default">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
 
                                     Edit
                                 </button>
                             </a>
-                            <a href="#"><button style="height:31px;margin-top:10px;" class="btn btn-xs btn-default"> Remove</button></a>
+                            <a href='@Url.Action("DeleteCustomer", "Customer")'><button style="height:31px;margin-top:10px;" class="btn btn-xs btn-default"> Remove</button></a>
                         </div>
                     </div>
                     <div class="card-body no-padding height-9">
