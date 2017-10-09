@@ -1,0 +1,45 @@
+﻿@model GSTInvoiceData.ViewModels.ItemViewModel
+
+@{
+    ViewBag.Title = "EditProduct";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<html>
+<head>
+</head>
+<body>
+    <div class="page-bar">
+        <div class="page-title-breadcrumb">
+            <div class="pull-left">
+                <div class="page-title">Item</div>
+            </div>
+            <ol class="breadcrumb page-breadcrumb pull-right">
+                <li>
+                    <i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                    <a class="parent-item" href="#">Edit Item</a>&nbsp;<i class="fa fa-angle-right">    </i>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="card card-topline-yellow">
+                <div class="card-head">
+                    <header>Edit Item</header>
+                </div>
+                <div class="card-body" id="bar-parent1">
+                    @using (Html.BeginForm("EditItem", "Items", FormMethod.Post))
+                    {
+                        Html.RenderPartial("PartialViews/_AddEditItem", Model);
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

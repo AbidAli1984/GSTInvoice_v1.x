@@ -14,7 +14,7 @@
                 <i class="fa fa-home"></i>&nbsp;<a class="parent-item" href='@Url.Action("Dashboard", "User")'>Home</a>&nbsp;<i class="fa fa-angle-right"></i>
             </li>
             <li>
-                <a class="parent-item" href="#">Contact</a>&nbsp;<i class="fa fa-angle-right">    </i>
+                <a class="parent-item" href="#">Items</a>
             </li>
         </ol>
     </div>
@@ -33,7 +33,7 @@
             </div>
         </form>
         <div class="float_header">
-            <a href='@Url.Action("AddItem", "Product")'>
+            <a href='@Url.Action("AddItem", "Items")'>
                 <button style="height:31px;margin-top:10px;" class="btn btn-xs btn-success">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                     New
@@ -102,7 +102,7 @@
     <div class="card-body ">
         <div class="table-scrollable">
     @{ 
-        Html.RenderPartial("PartialViews/_ProductList",Model);
+        Html.RenderPartial("PartialViews/_ItemList",Model);
     }
         </div>
     </div>

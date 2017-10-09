@@ -11,24 +11,30 @@
             <th>Type</th>
             <th>Price</th>
             <th>unit</th>
-            <th>Quality</th>
+            <th>Quantity</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td><input type="checkbox"><a href="">  @item.Name</a></td>
+                <td><input type="checkbox">@Html.ActionLink(@item.Name, "EditItem", new { id = item.ItemId })</td>
                 <td>@item.Description </td>
                 <td>@item.IsProduct</td>
                 <td>@item.UnitPrice</td>
                 <td>@item.Unit</td>
                 <td>@item.Quantity </td>
                 <td>
-                    @Html.ActionLink("Edit", "EditProduct", new { id = item.ItemId }) |
-                    @Html.ActionLink("Delete", "DeleteProduct", new { id = item.ItemId })
+                    @using (@Html.BeginForm("DeleteItem", "Items", new { itemId = item.ItemId }))
+                    {
+                        <button type="submit" onclick="return confirm('Are you sure you want to delete \'@item.Name\'?')" style="background-image: url(https://www.fidelity.com/webcontent/ap002388-eresearch-content/17.09/images/close.gif);
+    width: 25px;
+    height: 25px;" >
+                        </button>
+                    }
                 </td>
             </tr>
         }
     </tbody>
 </table>
+    

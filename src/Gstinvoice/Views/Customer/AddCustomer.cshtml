@@ -74,22 +74,22 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="row">
-                                    <div class="col-md-2" onclick="myFunction('otherdetails')">
+                                    <div class="col-md-2" onclick="SwitchForm('otherdetails')">
                                         <div class="panel">
                                             <div class="panel-body"><a>Other Details</a></div>
                                         </div>
                                     </div>
-                                    <div class="col-md-2" onclick="myFunction('addressform')">
+                                    <div class="col-md-2" onclick="SwitchForm('addressform')">
                                         <div class="panel">
                                             <div class="panel-body"><a>Address</a></div>
                                         </div>
                                     </div>
-                                    <div class="col-md-2" onclick="myFunction('contactpersons')">
+                                    <div class="col-md-2" onclick="SwitchForm('contactpersons')">
                                         <div class="panel">
                                             <div class="panel-body"><a>Contact Persons</a></div>
                                         </div>
                                     </div>
-                                    <div class="col-md-2" onclick="myFunction('remarks')">
+                                    <div class="col-md-2" onclick="SwitchForm('remarks')">
                                         <div class="panel">
                                             <div class="panel-body"><a>Remarks</a></div>
                                         </div>
@@ -157,7 +157,7 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script>
 
-        function myFunction(formName) {
+        function SwitchForm(formName) {
             $('.divInformation').hide();
             $('#' + formName).show();
         }

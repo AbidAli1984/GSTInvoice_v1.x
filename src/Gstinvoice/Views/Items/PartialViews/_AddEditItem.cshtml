@@ -1,0 +1,149 @@
+﻿@model GSTInvoiceData.ViewModels.ItemViewModel
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-md-2" onclick="SwitchToProductDetail()">
+                <div class="panel">
+                    <div class="panel-body"><a>Product</a></div>
+                </div>
+            </div>
+            <div class="col-md-2" onclick="SwitchToServiceDetail()">
+                <div class="panel">
+                    <div class="panel-body"><a>Service</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" style="display:block" id="product">
+    <div class="col-lg-12">
+        <div class="card card-topline-green">
+            <div class="card-head">
+                <header id="headid">Product Details</header>
+            </div>
+            <div class="card-body" id="bar-parent1">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            Name
+                            <span class="required"> * </span>
+                        </label>
+                        <div class="col-md-6">
+                            @Html.HiddenFor(model => model.ItemId)
+                            @Html.HiddenFor(model => model.IsProduct)
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "errorMessage" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            Description
+                            <span class="required"> * </span>
+                        </label>
+                        <div class="col-md-8">
+                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control description_style" })
+                        </div>
+                    </div>
+                    <div id="divMainQuantity">
+                        <div id="divQuantity" class="form-group">
+                            <label class="control-label col-md-3" id="Qualitylbl">
+                                Quantity
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            Unit
+                            <span class="required"> * </span>
+                        </label>
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(model => model.Unit, new SelectList(new[] { "abc", "bcd" }), "ABC", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            Tax
+                            <span class="required"> * </span>
+                        </label>
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(model => model.Tax, new SelectList(new[] { "abc", "bcd" }), "ABC", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            HSN
+                            <span class="required"> * </span>
+                        </label>
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.HSNorSAC, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            <strong>Sales Info</strong>
+                        </label>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            Unit Price
+                            <span class="required"> * </span>
+                        </label>
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            Currency
+                            <span class="required"> * </span>
+                        </label>
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Currency, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="row">
+        <div class="col-md-offset-3 col-md-9">
+            <input style="color:white;" type="submit" class="btn btn-primary" value="Save" />
+            @Html.ActionLink("Cancel", "Items",null, new { @class= "btn btn-default" })
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+        var tempQuantity = '';
+        $(document).ready(function () {
+            tempQuantity = $('#divQuantity').clone();
+            if($('#IsProduct').val() == 'False')
+            {
+                SwitchToServiceDetail();
+            }
+        })
+
+        function SwitchToProductDetail() {
+            $('#IsProduct').val(true);
+            $("#headid").html("Product Details");
+            $("#divMainQuantity").html(tempQuantity);
+        }
+
+        function SwitchToServiceDetail() {
+            $('#IsProduct').val(false);
+            $("#headid").html("Service Details");
+            $("#divMainQuantity").html('');
+        }
+</script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

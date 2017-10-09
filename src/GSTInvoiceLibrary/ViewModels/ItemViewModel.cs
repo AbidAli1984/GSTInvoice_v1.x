@@ -25,5 +25,7 @@ namespace GSTInvoiceData.ViewModels
         public string Currency { get; set; }
 
         public string Quantity { get; set; }
+
+        public string ProductType { get; set; }
     }
 }
