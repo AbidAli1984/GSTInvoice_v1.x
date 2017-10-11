@@ -1,0 +1,87 @@
+﻿@model IEnumerable<GSTInvoiceData.Models.Items>
+
+@{
+    Layout = "";
+}
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th> No.</th>
+            <th>Item Name</th>
+            <th>Unit</th>
+            <th>QTY</th>
+            <th>Price</th>
+            <th>Discount()%</th>
+            <th>Tax</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+        <tr>
+            <td>@item.Id</td>
+            <td>
+                <div class="form-group">
+                    <select type="text" name="name" data-required="1" class="form-control" placeholder="Select Item">
+                        <option>Select Item</option>
+                        <option>ryrytuyklgbtgkiuylmoklnjukikjlmjuoifgvr</option>
+                        <option>rtuytu</option>
+                    </select>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <select type="text" name="name" data-required="1" class="form-control" placeholder="Select Item">
+                        <option></option>
+                        <option>ryrytfjhfju</option>
+                        <option>rtuytu</option>
+                    </select>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                   @item.Quantity
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <input type="text" placeholder="price" name="name" data-required="1" class="form-control" />
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <input type="text" id="discount" placeholder="Disc.%" name="name" data-required="1" class="form-control" />
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <select type="text" name="name" data-required="1" class="form-control" placeholder="Select Item">
+                        <option>Select Tax</option>
+                        <option>ryrytfnggggggjuyyyyyyy</option>
+                        <option>rtuytu</option>
+                    </select>
+                </div>
+            </td>
+            <td>
+                <a href="">
+                    <button style="height:31px;margin-top:-7px;" class="btn btn-xs btn-success">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Add Line
+                    </button>
+                </a>
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>
+                <div class="form-group">
+                    <textarea style="height:80px;" type="text" name="name" placeholder="Description" class="form-control"></textarea>
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

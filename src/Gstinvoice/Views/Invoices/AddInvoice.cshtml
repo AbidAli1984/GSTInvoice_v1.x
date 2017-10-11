@@ -1,0 +1,122 @@
+﻿@model GSTInvoiceData.Models.Invoices
+
+@{
+    ViewBag.Title = "AddInvoice";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+<div class="page-bar">
+    <div class="page-title-breadcrumb">
+        <div class=" pull-left">
+            <div class="page-title">Invoices</div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li>
+                <i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a class="parent-item" href="invoices.html">Invoices</a>&nbsp;<i class="fa fa-angle-right">    </i>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="card card-topline-yellow">
+            <div class="card-head">
+                <header>Add New Invoice</header>
+            </div>
+            <div class="card-body" id="bar-parent1">
+                <form action="#" id="form_sample_1" class="form-horizontal">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Client Name
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.ClientName, new SelectList(new[] { "smith" }), "Select-Client", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ClientName)
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Invoice No
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.InvoiceNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="col-md-3">
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Invoice Date
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-1">
+                                <div class="input-group col-md-1">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    </span>
+                                    @Html.EditorFor(model => model.InvoiceDate, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <label class="control-label label_invoice col-md-2">
+                                Due Date
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-1">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    </span>
+                                    @Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Po No
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.PONumber, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                Payment Terms
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.ClientName, new SelectList(new[] { "smith" }), "On-Receipt", new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <button style="color:white;" type="submit" class="btn btn-primary">Preview & Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card card-topline-yellow">
+    <div class="card-head">
+        <header>Invoice</header>
+    </div>
+    <div class="card-body ">
+        <div class="table-scrollable">
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+
