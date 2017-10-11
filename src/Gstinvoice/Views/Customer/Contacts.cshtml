@@ -5,6 +5,23 @@
     ViewBag.Title = "CustomerInformation";
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
 }
+
+<script language="javascript">
+    function AjaxSearch(objInput) {
+        if ($(objInput).val().length <= 0 || $(objInput).val().length > 2) {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("SearchCustomer", "Customer")',
+                type: "POST",
+                data: { searchKey: $(objInput).val() },
+                success: function (data) {
+                    $('#divCustomers').html(data);
+                }
+            });
+        }
+    }
+
+</script>
 <div class="page-bar">
     <div class="page-title-breadcrumb">
         <div class="pull-left">
@@ -23,7 +40,18 @@
 <div class="card card-topline-yellow">
     <div class="card-head">
         <!-- start language menu -->
-        <div class="dropdown language-switch" style="margin-left:-2px;">
+        <div class="input-group" style="float: left;
+                                      width: 350px;
+                                      margin: 9px 22px;
+                                      border: 1px solid #32c861;
+                                      border-radius: 5px;
+                                      height: 36px;
+                                      background: #32c861;">
+            <input id="SearchKey" onkeyup="AjaxSearch(this)" type="text" class="form-control"
+                   placeholder="Search..." name="query" style="width: 300px;">
+            <i class="icon-magnifier" style="margin: 5px 14px;"></i>
+        </div>
+        @*<div class="dropdown language-switch" style="margin-left:-2px;">
             <form class="search-form-opened" action="#" method="GET">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search..." name="query">
@@ -34,7 +62,7 @@
                     </span>
                 </div>
             </form>
-        </div>
+        </div>*@
         <div class="new_btn">
             <a href='@Url.Action("AddCustomer", "Customer")'>
                 <button style="height:31px;margin-top:10px;" class="btn btn-xs btn-success">
@@ -103,42 +131,10 @@
         </div>
     </div>
     <div class="card-body ">
-        <div class="table-scrollable">
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th><input type="checkbox"></th>
-                        <th>Company Name</th>
-                        <th>Contact Name</th>
-                        <th>Receivables</th>
-                        <th>City</th>
-                        <th>Email</th>
-                        <th>Work Phone</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (CustomerDetailViewModel customerList in Model)
-                    {
-                        <tr class="clickable custo-view" id="@customerList.customerId">
-                            <td><input type="checkbox"></td>
-                            <td>
-                                @Ajax.ActionLink(
-                                    customerList.CompanyName,
-                                    "CustomerProfileDetail",
-                                    new { ID = customerList.customerId },
-                                    new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "pagecontent", InsertionMode = InsertionMode.Replace},
-                                    null
-                                )
-                            </td>
-                            <td>@customerList.ContactName</td>
-                            <td>₹ @customerList.Receivables</td>
-                            <td>@customerList.City</td>
-                            <td>@customerList.Email</td>
-                            <td>@customerList.WorkPhone</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+        <div id="divCustomers" class="table-scrollable">
+            @{
+                Html.RenderPartial("PartialViews/_ContactList", Model);
+            }
         </div>
     </div>
 </div>

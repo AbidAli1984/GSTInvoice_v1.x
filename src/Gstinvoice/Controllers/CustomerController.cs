@@ -40,11 +40,16 @@ namespace Gstinvoice.Controllers
 
         public ActionResult Contacts()
         {
-            List<CustomerDetailViewModel> customers = GSTInvoiceData.Repository.CustomerRepository.GetCustomerForListing();
+            List<CustomerDetailViewModel> customers = GSTInvoiceData.Repository.CustomerRepository.GetCustomerForListing(null);
             return View(customers);
         }
 
-
+        public string SearchCustomer(string searchKey)
+        {
+            List<CustomerDetailViewModel> customers = GSTInvoiceData.Repository.CustomerRepository.GetCustomerForListing(searchKey);
+            string ret = CommonFunctions.RenderPartialToString("~/Views/Customer/PartialViews/_ContactList.cshtml", customers, ControllerContext);
+            return ret;
+        }
 
         public PartialViewResult CustomerProfileDetail(string id)
         {
@@ -57,7 +62,7 @@ namespace Gstinvoice.Controllers
 
         public ActionResult CustomerProfileList()
         {
-            List<CustomerDetailViewModel> customers = GSTInvoiceData.Repository.CustomerRepository.GetCustomerForListing();
+            List<CustomerDetailViewModel> customers = GSTInvoiceData.Repository.CustomerRepository.GetCustomerForListing(null);
             return PartialView("PartialViews/CustomerProfileList", customers);
         }
 
@@ -76,16 +81,11 @@ namespace Gstinvoice.Controllers
 
         }
 
-        public ActionResult DeleteCustomer()
-        {
-            return View();
-        }
-
         [HttpPost]
         public ActionResult DeleteCustomer(Guid customerId)
         {
             GSTInvoiceData.Repository.CustomerRepository.DeleteCustomerByCustomerId(customerId);
-            return RedirectToAction("");
+            return RedirectToAction("Contacts","Customer");
         }
 
        

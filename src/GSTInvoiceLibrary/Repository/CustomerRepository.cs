@@ -26,10 +26,25 @@ namespace GSTInvoiceData.Repository
             return customerInformation;
         }
 
-        public static List<CustomerDetailViewModel> GetCustomerForListing()
+        public static List<CustomerDetailViewModel> GetCustomerForListing(string filterExpression)
         {
+            List<CustomerInformation> lstCustomer;
+            if (!string.IsNullOrEmpty(filterExpression))
+            {
+                lstCustomer = dbContext.customerInformation
+                            .Where(x => x.CompanyName.ToLower().StartsWith(filterExpression.ToLower()) ||
+                                        x.ContactDisplayName.ToLower().StartsWith(filterExpression.ToLower()) ||
+                                       x.address.BillingCity.ToLower().StartsWith(filterExpression.ToLower()) ||
+                                        x.ContactEmail.ToLower().StartsWith(filterExpression.ToLower()) ||
+                                          x.WorkPhoneNumber.ToLower().StartsWith(filterExpression.ToLower()))
+                            .ToList();
+            }
+            else
+            {
+                lstCustomer = dbContext.customerInformation.ToList();
+            }
             List<CustomerDetailViewModel> customers = new List<CustomerDetailViewModel>();
-            foreach (CustomerInformation customer in dbContext.customerInformation.OrderBy(x => x.Id).ToList())
+            foreach (CustomerInformation customer in lstCustomer)
             {
                 CustomerDetailViewModel customerDetail = new CustomerDetailViewModel();
                 customerDetail.customerId = customer.CustomerId;
@@ -49,6 +64,12 @@ namespace GSTInvoiceData.Repository
 
         public static void AddorUpdateCustomer(CustomerInformation customerInformation)
         {
+            CustomerInformation cust = new CustomerInformation()
+            { 
+                PAN = "",
+
+            };
+
             if (dbContext.customerInformation.Any(user => user.CustomerId == customerInformation.CustomerId))
             {
                 dbContext.Entry(customerInformation).State = EntityState.Modified;
@@ -88,8 +109,13 @@ namespace GSTInvoiceData.Repository
         public static void DeleteCustomerByCustomerId(Guid customerId)
         {
 
-             CustomerInformation custometToDelete = dbContext.customerInformation.Find(customerId);
-            dbContext.customerInformation.Remove(custometToDelete);
+             CustomerInformation customerToDelete = dbContext.customerInformation
+                                                        .Include(x => x.address)
+                                                        .Include(x => x.customerOtherDetail)
+                                                        .Include(x => x.contactPersons)
+                                                        .FirstOrDefault(x => x.CustomerId == customerId);
+            if(customerToDelete!=null)
+            dbContext.customerInformation.Remove(customerToDelete);
             dbContext.SaveChanges();
         }
     }
