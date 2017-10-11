@@ -122,7 +122,7 @@
                                     Edit
                                 </button>
                             </a>
-                            <a href='@Url.Action("DeleteCustomer", "Customer", new { customerId = Model.CustomerId, onclick="return confirm('Are you sure?');" })'><button style="height:31px;margin-top:10px;" class="btn btn-xs btn-default"> Remove</button></a>
+                            <a href='@Url.Action("DeleteCustomer", "Customer", new { customerId = Model.CustomerId, onclick="return confirm('Are you sure you want to delete \'@model.Name\'?')" })'><button style="height:31px;margin-top:10px;" class="btn btn-xs btn-default"> Remove</button></a>
                         </div>
                     </div>
                     <div class="card-body no-padding height-9">

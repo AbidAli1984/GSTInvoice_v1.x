@@ -1,8 +1,9 @@
 ﻿@model GSTInvoiceData.Models.ContactPerson
 @{
-    ViewBag.Title = "_ContactPerson";
+    ViewBag.Title = "_vvv";
 }
-<tr class="contacts-record-template contacts-record">
+
+<tr class="contacts-record">
     <td>
         @Html.DropDownListFor(model => model.Salutation, new SelectList(new[] { "Dear Mr.", "Dear Mrs.", "Dear Ms." }), "Salutation", new { @class = "form-control" })
     </td>

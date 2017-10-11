@@ -26,8 +26,15 @@
                             <span class="required"> * </span>
                         </label>
                         <div class="col-md-6">
-                            @Html.DropDownListFor(model => model.PaymentTerms, new SelectList(new[] { "Net 15", "Net 30", "Net 45", "Net 60", "Due end of the month", "Due end of next month" }), "Due Or Receipt", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.PaymentTerms)
+                            @Html.DropDownListFor(model => model.PaymentTerms,
+                                  new List<SelectListItem> {
+                                       new SelectListItem { Value = "15" , Text = "Net 15" },
+                                       new SelectListItem { Value = "30" , Text ="Net 30" },
+                                       new SelectListItem { Value = "45" , Text = "Net 45" },
+                                       new SelectListItem { Value = "60" , Text ="Net 60" }
+                                    }, "Due Or Receipt",
+                                  new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model=>model.PaymentTerms)
                         </div>
                     </div>
 

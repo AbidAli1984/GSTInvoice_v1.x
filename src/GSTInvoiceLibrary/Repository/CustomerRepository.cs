@@ -56,8 +56,6 @@ namespace GSTInvoiceData.Repository
             else
             {
                 customerInformation.CustomerId = Guid.NewGuid();
-
-
                 customerInformation.contactPersons.RemoveAll(contactPerson => string.IsNullOrEmpty(contactPerson.FirstName) && string.IsNullOrEmpty(contactPerson.LastName) &&
                         string.IsNullOrEmpty(contactPerson.EmailAddress) && string.IsNullOrEmpty(contactPerson.WorkPhoneNumber) &&
                         string.IsNullOrEmpty(contactPerson.MobileNumber));

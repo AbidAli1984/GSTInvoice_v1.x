@@ -35,6 +35,10 @@ namespace GSTInvoiceData.Models
         public int UnitPrice { get; set; }
 
         public string Currency { get; set; }
+
+        public string Discount { get; set; }
+
+        public virtual Invoices invoices { get; set; }
        
     }
 }

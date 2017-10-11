@@ -9,6 +9,9 @@ namespace GSTInvoiceData.Models
 {
     public class Invoices
     {
+        public int Id { get; set; }
+        [Key]
+        public Guid ClientId { get; set; }
         [Required]
         public string ClientName { get; set; }
 
@@ -21,7 +24,7 @@ namespace GSTInvoiceData.Models
         public int PONumber { get; set; }
 
         public string PaymentTerms { get; set; }
-    }
 
-    
+        public virtual ICollection<Items> items { get; set; }
+    }
 }

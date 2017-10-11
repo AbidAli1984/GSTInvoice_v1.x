@@ -43,6 +43,7 @@
             <span class="required"> * </span>
         </label>
         <div class="col-md-6">
+            <input type="hidden" id="hiddenContactDisplayName" value="@Model.ContactDisplayName" />
             @Html.DropDownListFor(model => model.ContactDisplayName, new SelectList(new[] { "Mr.smith " }), "", new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.ContactDisplayName)
         </div>
@@ -195,7 +196,7 @@
 <div class="row">
     <div class="col-md-offset-3 col-md-9">
         <button type="submit" class="btn btn-primary">Save</button>
-        @Html.ActionLink("Cancle", "Contacts", null, new { @class= "btn btn-default" })
+        @Html.ActionLink("Cancle", "Contacts", null, new { @class = "btn btn-default" })
     </div>
 </div>
 
@@ -204,61 +205,65 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
 <script type="text/javascript">
-        function AddContactDisplayName() {
+    function AddContactDisplayName() {
+        var contactDisplayName = $('#ContactDisplayName');
+        debugger;
+        var option = '<option></option>';
+        var firstName = $('#FirstName').val();
+        var lastName = $('#LastName').val();
+        var companyName = $('#CompanyName').val();
+        if (firstName)
+            option = option + '<option>' + firstName + '</option>';
+        if (lastName)
+            option = option + '<option>' + lastName + '</option>';
+        if (firstName && lastName)
+            option = option + '<option>' + firstName + ' ' + lastName + '</option><option>' + lastName + ' ' + firstName + '</option>';
+        if (companyName)
+            option = option + '<option>' + companyName + '</option>';
+        contactDisplayName.html(option);
+        var displayName = $('#hiddenContactDisplayName').val();
+        debugger;
+        contactDisplayName.val(displayName);
+    }
+
+    function Copy() {
+        $('#address_ShippingBuilding').val($('#address_BillingBuilding').val())
+        $('#address_ShippingAddress').val($('#address_BillingAddress').val())
+        $('#address_ShippingCity').val($('#address_BillingCity').val())
+        $('#address_ShippingState').val($('#address_BillingState').val())
+        $('#address_ShippingPinCode').val($('#address_BillingPinCode').val())
+        $('#address_ShippingCountry').val($('#address_BillingCountry').val())
+        $('#address_ShippingFax').val($('#address_BillingFax').val())
+    }
+
+    function SwitchForm(formName) {
+        $('.divInformation').hide();
+        $('#' + formName).show();
+    }
+
+    $(document).ready(function () {
+        AddContactDisplayName();
+        debugger;
+        $('#addNewContact').click(function () {
             debugger;
-            var option = '<option></option>';
-            var firstName = $('#FirstName').val();
-            var lastName = $('#LastName').val();
-            var companyName = $('#CompanyName').val();
-            if (firstName)
-                option = option + '<option>' + firstName + '</option>';
-            if (lastName)
-                option = option + '<option>' + lastName + '</option>';
-            if (firstName && lastName)
-                option = option + '<option>' + firstName + ' ' + lastName + '</option><option>' + lastName + ' ' + firstName + '</option>';
-            if (companyName)
-                option = option + '<option>' + companyName + '</option>';
-            $('#ContactDisplayName').html(option);
-        }
-
-        function Copy() {
-            $('#address_ShippingBuilding').val($('#address_BillingBuilding').val())
-            $('#address_ShippingAddress').val($('#address_BillingAddress').val())
-            $('#address_ShippingCity').val($('#address_BillingCity').val())
-            $('#address_ShippingState').val($('#address_BillingState').val())
-            $('#address_ShippingPinCode').val($('#address_BillingPinCode').val())
-            $('#address_ShippingCountry').val($('#address_BillingCountry').val())
-            $('#address_ShippingFax').val($('#address_BillingFax').val())
-        }
-
-        function SwitchForm(formName) {
-            $('.divInformation').hide();
-            $('#' + formName).show();
-        }
-
-        $(document).ready(function () {
-            AddContactDisplayName();
-            debugger;
-            $('#addNewContact').click(function () {
-                debugger;
-                var count = $("tr.contacts-record").length;
-                var template = $('#contactListTableBody tr:first').clone();
-                template.find('input[type=text]').val(null);
-                $.each(template.find('input[type=text]'), function () {
-                    var name = $(this).attr('name');
-                    name = name.replace('0', count);
-                    var id = $(this).attr('id');
-                    id = id.replace('0', count);
-                    $(this).attr({ 'name': name, 'id': id });
-                });
-                var select = template.find('select');
-                var name = select.attr('name');
+            var count = $("tr.contacts-record").length;
+            var template = $('#contactListTableBody tr:first').clone();
+            template.find('input[type=text]').val(null);
+            $.each(template.find('input[type=text]'), function () {
+                var name = $(this).attr('name');
                 name = name.replace('0', count);
-                var id = select.attr('id');
+                var id = $(this).attr('id');
                 id = id.replace('0', count);
-                template.find('select').attr({ 'name': name, 'id': id })
-                template.removeClass('contacts-record-template');
-                $('.list-Contacts').append(template);
-            })
+                $(this).attr({ 'name': name, 'id': id });
+            });
+            var select = template.find('select');
+            var name = select.attr('name');
+            name = name.replace('0', count);
+            var id = select.attr('id');
+            id = id.replace('0', count);
+            template.find('select').attr({ 'name': name, 'id': id })
+            template.removeClass('contacts-record-template');
+            $('.list-Contacts').append(template);
         })
+    })
 </script>

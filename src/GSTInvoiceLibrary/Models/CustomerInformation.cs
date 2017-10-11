@@ -54,21 +54,8 @@ namespace GSTInvoiceData.Models
 
         public virtual List<ContactPerson> contactPersons { get; set; }
 
-        public virtual CustomerOtherDetail customerOtherDetail { get; set; }
+        public CustomerOtherDetail customerOtherDetail { get; set; }
 
         public virtual Address address { get; set; }
-
-        public CustomerInformation()
-        {
-            customerOtherDetail = null;
-            address = null;
-
-            List<ContactPerson> contactPerson = new List<ContactPerson>();
-            contactPerson.Add(new ContactPerson()
-            {
-                Salutation = "Salutation",
-            });
-            this.contactPersons = contactPerson;
-        }
     }
 }
