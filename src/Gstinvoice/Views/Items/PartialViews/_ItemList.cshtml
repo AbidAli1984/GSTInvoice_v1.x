@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GSTInvoiceData.Models.Items>
+﻿@model IEnumerable<GSTInvoiceData.ViewModels.ItemViewModel>
 
 @{
     Layout = "";
@@ -20,7 +20,7 @@
             <tr>
                 <td><input type="checkbox">@Html.ActionLink(@item.Name, "EditItem", new { id = item.ItemId })</td>
                 <td>@item.Description </td>
-                <td>@item.IsProduct</td>
+                <td>@item.ProductType</td>
                 <td>@item.UnitPrice</td>
                 <td>@item.Unit</td>
                 <td>@item.Quantity </td>

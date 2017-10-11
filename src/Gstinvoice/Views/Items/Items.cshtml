@@ -1,8 +1,25 @@
-﻿@model IEnumerable<GSTInvoiceData.Models.Items>
+﻿@model IEnumerable<GSTInvoiceData.ViewModels.ItemViewModel>
 @{
     ViewBag.Title = "ProductDetails";
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
 }
+
+<script language="javascript">
+    function AjaxSearch(objInput) {
+        if ($(objInput).val().length <= 0 || $(objInput).val().length > 2) {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("SearchItems", "Items")',
+                type: "POST",
+                data: { searchKey: $(objInput).val() },
+                success: function (data) {
+                    $('#divItems').html(data);
+                }
+            });
+        }
+    }
+
+</script>
 
 <div class="page-bar">
     <div class="page-title-breadcrumb">
@@ -22,16 +39,32 @@
 <div class="card card-topline-yellow">
     <div class="card-head">
         <!-- start language menu -->
-        <form class="search-form-opened" action="#" method="GET">
+        <div class="input-group" style="float: left;
+                                      width: 350px;
+                                      margin: 9px 22px;
+                                      border: 1px solid #32c861;
+                                      border-radius: 5px;
+                                      height: 36px;
+                                      background: #32c861;">
+            <input id="SearchKey" onkeyup="AjaxSearch(this)" type="text" class="form-control" 
+                   placeholder="Search..." name="query" style="width: 300px;">
+            <i class="icon-magnifier" style="margin: 5px 14px;"></i>
+        </div>
+        
+        
+        
+        
+
+        @*<form class="search-form-opened" action="#" method="GET">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search..." name="query">
+                <input id="SearchKey" onkeyup="AjaxSearch(this)" type="text" class="form-control" placeholder="Search..." name="query">
                 <span class="input-group-btn">
-                    <a href="javascript:;" class="btn submit">
+                    <a data-ajax="true" class="btn submit" data-ajax-method="GET" data-ajax-mode="replace" data-ajax-update="#pagecontent" href='Customer/CustomerProfileDetail/05b5a9a1-8100-423f-8c7b-e895cae0b7d9'>
                         <i class="icon-magnifier"></i>
                     </a>
                 </span>
             </div>
-        </form>
+        </form>*@
         <div class="float_header">
             <a href='@Url.Action("AddItem", "Items")'>
                 <button style="height:31px;margin-top:10px;" class="btn btn-xs btn-success">
@@ -100,13 +133,10 @@
         </div>
     </div>
     <div class="card-body ">
-        <div class="table-scrollable">
-    @{ 
-        Html.RenderPartial("PartialViews/_ItemList",Model);
-    }
+        <div id="divItems" class="table-scrollable">
+            @{
+                Html.RenderPartial("PartialViews/_ItemList", Model);
+            }
         </div>
     </div>
 </div>
-
-
-

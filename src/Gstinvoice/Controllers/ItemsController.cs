@@ -1,4 +1,4 @@
-﻿using GSTInvoiceData.Models;
+﻿using GSTInvoiceData;
 using GSTInvoiceData.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -14,10 +14,30 @@ namespace Gstinvoice.Controllers
             return View();
         }
 
+
+        readonly GSTInvoiceDBContext _dbcontext = new GSTInvoiceDBContext();
+
+        [HttpPost]
+        public JsonResult GetUnitsByName(string name)
+        {
+            //Searching records from list using LINQ query  
+            var cityName = (from n in _dbcontext.itemUnits.ToList()
+                            where n.Name.ToLower().StartsWith(name.ToLower())
+                            select new { n.Name, n.Code });
+            return Json(cityName, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Items()
         {
-            List<Items> items = GSTInvoiceData.Repository.ProductRepositery.GetAllItems();
+            List<ItemViewModel> items = GSTInvoiceData.Repository.ProductRepositery.GetAllItems(null);
             return View(items);
+        }
+
+        public string SearchItems(string searchKey)
+        {
+            List<ItemViewModel> items = GSTInvoiceData.Repository.ProductRepositery.GetAllItems(searchKey);
+            string ret = CommonFunctions.RenderPartialToString("~/Views/Items/PartialViews/_ItemList.cshtml", items, ControllerContext);
+            return ret;
         }
 
         public ActionResult AddItem()
@@ -37,7 +57,6 @@ namespace Gstinvoice.Controllers
                 return RedirectToAction("Items", "Items");
 
             }
-            var errors = ModelState.Values.SelectMany(v => v.Errors);
             return View(item);
         }
 

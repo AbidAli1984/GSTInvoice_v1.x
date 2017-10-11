@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using GSTInvoiceData;
+﻿using GSTInvoiceData;
 using GSTInvoiceData.Models;
 using GSTInvoiceData.ViewModels;
-using System.Data.Entity;
-using System.Dynamic;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Gstinvoice.Controllers
 {
@@ -22,7 +19,7 @@ namespace Gstinvoice.Controllers
         {
             return View();
         }
-        
+
         public ActionResult AddCustomer()
         {
             CustomerInformation customerInformation = GSTInvoiceData.Repository.CustomerRepository.GetBlankCustomer();
@@ -49,10 +46,10 @@ namespace Gstinvoice.Controllers
 
 
 
-        public PartialViewResult CustomerProfileDetail(string ID)
+        public PartialViewResult CustomerProfileDetail(string id)
         {
-            Guid customerid = new Guid();
-            Guid.TryParse(ID, out customerid);
+            Guid customerid;
+            Guid.TryParse(id, out customerid);
             CustomerInformation customer = customerContext.customerInformation.FirstOrDefault(x => x.CustomerId == customerid);
             customer.customerOtherDetail = customerContext.customerOtherdetail.FirstOrDefault(x => x.CustomerId == customerid);
             return PartialView("PartialViews/CustomerProfileDetail", customer);
