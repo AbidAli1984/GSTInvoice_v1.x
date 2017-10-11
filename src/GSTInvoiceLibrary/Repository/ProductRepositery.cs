@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GSTInvoiceData.Repository
 {
@@ -38,33 +36,64 @@ namespace GSTInvoiceData.Repository
             dbContext.SaveChanges();
         }
 
-        public static List<Items> GetAllItems()
+        public static List<ItemViewModel> GetAllItems(string filterExpression)
         {
-            List<Items> lstItem = dbContext.items.ToList();
-            return lstItem;
+            List<Items> lstItem;
+            if (!string.IsNullOrEmpty(filterExpression))
+            {
+                lstItem = dbContext.items
+                            .Where(x => x.Name.ToLower().StartsWith(filterExpression.ToLower()) ||
+                                        x.Description.ToLower().StartsWith(filterExpression.ToLower()) ||
+                                        (filterExpression.ToLower().StartsWith("pro") == x.IsProduct &&
+                                        filterExpression.ToLower().StartsWith("ser") == !x.IsProduct))
+                            .ToList();
+            }
+            else
+            {
+                lstItem = dbContext.items.ToList();
+            }
+            List<ItemViewModel> itemsView = new List<ItemViewModel>();
+            foreach (Items item in lstItem)
+            {
+                ItemViewModel viewModel = new ItemViewModel
+                {
+                    ItemId = item.ItemId,
+                    Name = item.Name,
+                    Description = item.Description,
+                    ProductType = item.IsProduct ? "Product" : "Service",
+                    UnitPrice = item.UnitPrice,
+                    Quantity = item.Quantity
+                };
+                itemsView.Add(viewModel);
+            }
+            return itemsView;
         }
 
         public static ItemViewModel GetItemByItemId(Guid itemId)
         {
             Items item = dbContext.items.SingleOrDefault(x => x.ItemId == itemId);
             ItemViewModel items = new ItemViewModel();
-            items.ItemId = item.ItemId;
-            items.IsProduct = item.IsProduct;
-            items.Name = item.Name;
-            items.Description = item.Description;
-            items.Quantity = item.Quantity;
-            items.Unit = item.Unit;
-            items.Tax = item.Tax;
-            items.HSNorSAC = item.HSNorSAC;
-            items.UnitPrice = item.UnitPrice;
-            items.Currency = item.Currency;
+            if (item != null)
+            {
+                items.ItemId = item.ItemId;
+                items.IsProduct = item.IsProduct;
+                items.Name = item.Name;
+                items.Description = item.Description;
+                items.Quantity = item.Quantity;
+                items.Unit = item.Unit;
+                items.Tax = item.Tax;
+                items.HSNorSAC = item.HSNorSAC;
+                items.UnitPrice = item.UnitPrice;
+                items.Currency = item.Currency;
+            }
             return items;
         }
 
         public static void DeleteItemsByItemId(Guid itemId)
         {
             Items itemToDelete = dbContext.items.Find(itemId);
-            dbContext.items.Remove(itemToDelete);
+            if (itemToDelete != null)
+                dbContext.items.Remove(itemToDelete);
             dbContext.SaveChanges();
         }
     }

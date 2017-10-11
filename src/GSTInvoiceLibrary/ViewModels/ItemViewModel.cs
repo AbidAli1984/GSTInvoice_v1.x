@@ -27,5 +27,10 @@ namespace GSTInvoiceData.ViewModels
         public string Quantity { get; set; }
 
         public string ProductType { get; set; }
+
+        public ItemViewModel()
+        {
+            ProductType = IsProduct ? "Product" : "Service";
+        }
     }
 }

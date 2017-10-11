@@ -1,5 +1,5 @@
-﻿using System.Data.Entity;
-using GSTInvoiceData.Models;
+﻿using GSTInvoiceData.Models;
+using System.Data.Entity;
 
 namespace GSTInvoiceData
 {
@@ -17,6 +17,8 @@ namespace GSTInvoiceData
         public DbSet<City> city { get; set; }
 
         public DbSet<Items> items { get; set; }
+
+        public DbSet<ItemUnit> itemUnits { get; set; }
 
     }
 }
