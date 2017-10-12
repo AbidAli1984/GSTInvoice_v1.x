@@ -15,5 +15,6 @@ namespace GSTInvoiceData.ViewModels
         public string City { get; set; }
         public string Email { get; set; }
         public string WorkPhone { get; set; }
+        public int PageSize { get; set; }
     }
 }

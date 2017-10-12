@@ -1,5 +1,9 @@
-﻿@using GSTInvoiceData.ViewModels
-@model IEnumerable<CustomerDetailViewModel>
+﻿ @using PagedList;
+
+@using PagedList.Mvc;
+@using GSTInvoiceData.ViewModels
+@model IPagedList<CustomerDetailViewModel>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "CustomerInformation";
@@ -7,6 +11,7 @@
 }
 
 <script language="javascript">
+
     function AjaxSearch(objInput) {
         if ($(objInput).val().length <= 0 || $(objInput).val().length > 2) {
             debugger;
@@ -63,6 +68,7 @@
                 </div>
             </form>
         </div>*@
+        <div  style="border: 1px solid #32c861;  border-radius: 5px;">@Html.DropDownList("PageSize", new SelectList(new[] { "5", "10", "20" }), "select-PageSize", new {@class= "form-control",id ="pagesizeList"})</div>
         <div class="new_btn">
             <a href='@Url.Action("AddCustomer", "Customer")'>
                 <button style="height:31px;margin-top:10px;" class="btn btn-xs btn-success">
@@ -135,8 +141,10 @@
             @{
                 Html.RenderPartial("PartialViews/_ContactList", Model);
             }
+     
         </div>
     </div>
 </div>
+@Html.PagedListPager(Model, page => Url.Action("Contacts", new { page, searchKey = Request.QueryString["searchKey"], search = Request.QueryString["search"], }) ,new PagedListRenderOptions() {Display=PagedListDisplayMode.IfNeeded,DisplayPageCountAndCurrentLocation=true })
 <script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
 <script src="~/scripts/frontend.js"></script>

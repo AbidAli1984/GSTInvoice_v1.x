@@ -1,6 +1,7 @@
 ﻿using GSTInvoiceData;
 using GSTInvoiceData.Models;
 using GSTInvoiceData.ViewModels;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,10 +39,14 @@ namespace Gstinvoice.Controllers
         }
 
 
-        public ActionResult Contacts()
+        public ActionResult Contacts(int?page,string searchKey,string search)
         {
-            List<CustomerDetailViewModel> customers = GSTInvoiceData.Repository.CustomerRepository.GetCustomerForListing(null);
-            return View(customers);
+            List<CustomerDetailViewModel> customers = GSTInvoiceData.Repository.CustomerRepository.GetCustomerForListing(searchKey);
+            //string ret = CommonFunctions.RenderPartialToString("~/Views/Customer/PartialViews/_ContactList.cshtml", customers.ToPagedList(page ?? 1, 5), ControllerContext);
+            //return ret;
+            //int pageSize = 3;
+            //int pageNumber = (page ?? 1);
+            return View(customers.ToPagedList(page??1,5));
         }
 
         public string SearchCustomer(string searchKey)
