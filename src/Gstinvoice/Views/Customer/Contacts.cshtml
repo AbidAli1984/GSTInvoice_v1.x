@@ -1,4 +1,5 @@
 ﻿ @using PagedList;
+@using GSTInvoiceData;
 
 @using PagedList.Mvc;
 @using GSTInvoiceData.ViewModels
@@ -8,6 +9,7 @@
 @{
     ViewBag.Title = "CustomerInformation";
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
+    SelectList itemsPerPageList = GSTInvoiceData.Repository.CustomerRepository.ItemsPerPageList;
 }
 
 <script language="javascript">
@@ -68,7 +70,10 @@
                 </div>
             </form>
         </div>*@
-        <div  style="border: 1px solid #32c861;  border-radius: 5px;">@Html.DropDownList("PageSize", new SelectList(new[] { "5", "10", "20" }), "select-PageSize", new {@class= "form-control",id ="pagesizeList"})</div>
+        <div  style="border: 1px solid #32c861;  border-radius: 5px;">
+       @Html.DropDownList("ItemsPerPage", itemsPerPageList,
+  new { @class = "form-control", @id = "ItemsPerPageList" })
+        </div>
         <div class="new_btn">
             <a href='@Url.Action("AddCustomer", "Customer")'>
                 <button style="height:31px;margin-top:10px;" class="btn btn-xs btn-success">
@@ -145,6 +150,6 @@
         </div>
     </div>
 </div>
-@Html.PagedListPager(Model, page => Url.Action("Contacts", new { page, searchKey = Request.QueryString["searchKey"], search = Request.QueryString["search"], }) ,new PagedListRenderOptions() {Display=PagedListDisplayMode.IfNeeded,DisplayPageCountAndCurrentLocation=true })
+@Html.PagedListPager(Model, page => Url.Action("Contacts", new { page, itemsPerPage = ViewBag.CurrentItemsPerPage, searchKey = Request.QueryString["searchKey"], search = Request.QueryString["search"], }) ,new PagedListRenderOptions() {Display=PagedListDisplayMode.IfNeeded,DisplayPageCountAndCurrentLocation=true })
 <script src="~/scripts/jquery.unobtrusive-ajax.js"></script>
 <script src="~/scripts/frontend.js"></script>

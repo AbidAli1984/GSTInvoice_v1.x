@@ -39,14 +39,17 @@ namespace Gstinvoice.Controllers
         }
 
 
-        public ActionResult Contacts(int?page,string searchKey,string search)
+        public ActionResult Contacts(int? itemsPerPage,int?page,string searchKey,string search)
         {
+            SelectList itemsPerPageList = GSTInvoiceData.Repository.CustomerRepository.ItemsPerPageList;
+            ViewBag.CurrentItemsPerPage = itemsPerPage;
             List<CustomerDetailViewModel> customers = GSTInvoiceData.Repository.CustomerRepository.GetCustomerForListing(searchKey);
             //string ret = CommonFunctions.RenderPartialToString("~/Views/Customer/PartialViews/_ContactList.cshtml", customers.ToPagedList(page ?? 1, 5), ControllerContext);
             //return ret;
             //int pageSize = 3;
             //int pageNumber = (page ?? 1);
-            return View(customers.ToPagedList(page??1,5));
+            return View(customers.ToPagedList(pageNumber: page ?? 1,
+                                            pageSize: itemsPerPage ?? 5));
         }
 
         public string SearchCustomer(string searchKey)

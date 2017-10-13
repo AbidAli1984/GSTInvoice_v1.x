@@ -4,6 +4,8 @@ using GSTInvoiceData.Models;
 using System.Data.Entity;
 using System.Collections.Generic;
 using GSTInvoiceData.ViewModels;
+using System.Web.Mvc;
+using System.Collections;
 
 namespace GSTInvoiceData.Repository
 {
@@ -118,5 +120,14 @@ namespace GSTInvoiceData.Repository
             dbContext.customerInformation.Remove(customerToDelete);
             dbContext.SaveChanges();
         }
+
+        public static SelectList ItemsPerPageList
+        {
+            get
+            {
+                return (new SelectList(new[] { 5, 10, 25, 50, 100 }, selectedValue: 5));
+            }
+        }
+
     }
 }
